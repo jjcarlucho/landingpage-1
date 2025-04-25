@@ -15,10 +15,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
     videoHash ? `?h=${videoHash}&` : '?'
   }background=1&loop=1&autopause=0&muted=1&controls=0&playsinline=1`;
 
-  // URL para el video con sonido
+  // URL para el video con sonido (agregamos api=1 para habilitar el SDK de Vimeo)
   const mainVideoSrc = `https://player.vimeo.com/video/${videoId}${
     videoHash ? `?h=${videoHash}&` : '?'
-  }transparent=1&playsinline=1&controls=0&autopause=0`;
+  }api=1&transparent=1&playsinline=1&controls=0&autopause=0`;
 
   useEffect(() => {
     // Escuchar mensajes del iframe de Vimeo
@@ -46,15 +46,20 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
       // Pequeño delay para asegurar que el iframe está listo
       setTimeout(() => {
         if (playerRef.current) {
+          // Enviamos el mensaje en el formato correcto del SDK de Vimeo
           playerRef.current.contentWindow?.postMessage({
-            method: 'play'
+            method: 'play',
+            value: '1'
           }, 'https://player.vimeo.com');
         }
-      }, 100);
+      }, 500); // Aumentamos el delay para dar más tiempo al iframe
     } else if (playerRef.current) {
+      // Toggle play/pause usando el formato correcto del SDK
       playerRef.current.contentWindow?.postMessage({
-        method: isPlaying ? 'pause' : 'play'
+        method: isPlaying ? 'pause' : 'play',
+        value: '1'
       }, 'https://player.vimeo.com');
+      setIsPlaying(!isPlaying);
     }
   };
 
