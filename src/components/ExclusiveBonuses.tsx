@@ -14,7 +14,7 @@ const ExclusiveBonuses: React.FC = () => {
       id: 2,
       title: "Your Wish Is Your Command",
       description: "A legendary series of audios about mindset, manifestation, and Law of Attraction applied to business. This exclusive collection trains you to think like a reality creator, not like a project slave. Imagine transforming your mindset to manifest success in business. These audios guide you in applying the Law of Attraction to your entrepreneurial endeavors, teaching you to create your desired reality. Picture yourself shifting from a place of limitation to one of limitless potential. As you integrate these principles, you'll start to see opportunities you never noticed before, attract like-minded collaborators, and naturally align with your business goals, making the path to success more intuitive and less stressful.",
-      value: 10000,
+      value: 10.000,
       image: "/images/yourwishisyourcommand.avif"
     },
     {
