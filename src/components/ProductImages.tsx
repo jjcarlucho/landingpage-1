@@ -34,7 +34,7 @@ const ProductImages: React.FC = () => {
               <div className="flex items-center gap-6 bg-[#1a1a1a] p-6 rounded-xl hover:bg-[#1a1a1a]/90 transition-all duration-300">
                 <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
                   <img
-                    src="https://images.unsplash.com/photo-1684679057134-1e3ed705e671?auto=format&fit=crop&w=200&h=200&q=80"
+                    src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=200&h=200&q=80"
                     alt="AI Tools Checklist"
                     className="w-full h-full object-cover"
                   />
@@ -85,19 +85,19 @@ const ProductImages: React.FC = () => {
               </div>
 
               {/* Ultra Premium CTA Section */}
-              <div className="mt-12">
-                <div className="relative">
+              <div className="mt-8">
+                <div className="relative max-w-3xl mx-auto">
                   {/* Background Glow Effects */}
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ecc94b] via-[#d4af37] to-[#ecc94b] rounded-2xl opacity-75 blur-xl group-hover:opacity-100 transition-all duration-500"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ecc94b] via-[#d4af37] to-[#ecc94b] rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-all duration-500"></div>
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#1a1a1a] via-[#2c2c2c] to-[#1a1a1a] rounded-2xl opacity-90"></div>
 
                   {/* Main Content Container */}
-                  <div className="relative bg-gradient-to-br from-[#1a1a1a] to-[#2c2c2c] rounded-2xl p-8 border border-[#ecc94b]/20">
+                  <div className="relative bg-gradient-to-br from-[#1a1a1a] to-[#2c2c2c] rounded-2xl p-6 border border-[#ecc94b]/20">
                     {/* Top Section - Value Badge */}
-                    <div className="absolute -top-5 left-1/2 transform -translate-x-1/2">
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                       <div className="bg-gradient-to-r from-[#ecc94b] to-[#d4af37] p-[1px] rounded-full">
-                        <div className="px-8 py-2 rounded-full bg-[#1a1a1a]">
-                          <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecc94b] to-[#d4af37]">
+                        <div className="px-6 py-1.5 rounded-full bg-[#1a1a1a]">
+                          <span className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecc94b] to-[#d4af37]">
                             Exclusive Offer
                           </span>
                         </div>
@@ -105,44 +105,44 @@ const ProductImages: React.FC = () => {
                     </div>
 
                     {/* Content Grid */}
-                    <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                       {/* Left Column - Original Price */}
-                      <div className="text-center md:text-left space-y-3">
-                        <p className="text-gray-400 uppercase tracking-wider text-sm">Total Value</p>
+                      <div className="text-center md:text-left space-y-2">
+                        <p className="text-gray-400 uppercase tracking-wider text-xs">Total Value</p>
                         <div className="relative inline-block">
-                          <span className="text-4xl font-bold text-white opacity-75 line-through decoration-[#ecc94b]">
+                          <span className="text-3xl font-bold text-white opacity-75 line-through decoration-[#ecc94b]">
                             $11,094
                           </span>
-                          <div className="absolute -top-3 -right-4 transform rotate-12">
-                            <span className="text-[#ecc94b] text-xl font-bold">*</span>
+                          <div className="absolute -top-2 -right-3 transform rotate-12">
+                            <span className="text-[#ecc94b] text-lg font-bold">*</span>
                           </div>
                         </div>
                       </div>
 
                       {/* Right Column - Special Price */}
-                      <div className="text-center md:text-right space-y-3">
-                        <p className="text-gray-400 uppercase tracking-wider text-sm">Special Price</p>
-                        <div className="inline-block bg-gradient-to-r from-[#ecc94b] to-[#d4af37] p-[1px] rounded-xl">
-                          <div className="px-6 py-3 rounded-xl bg-[#1a1a1a]">
-                            <span className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecc94b] to-[#d4af37]">
-                              $11.11
-                            </span>
+                      <div className="text-center md:text-right">
+                        <div className="inline-block">
+                          <div className="relative">
+                            <div className="absolute -inset-1 bg-gradient-to-r from-[#ecc94b] to-[#d4af37] blur opacity-70"></div>
+                            <div className="relative bg-[#1a1a1a] px-4 py-2 rounded-lg border border-[#ecc94b]/50">
+                              <span className="text-3xl font-bold text-[#ecc94b]">$11.11</span>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     {/* Bottom CTA Button */}
-                    <div className="mt-8">
+                    <div className="mt-6">
                       <a href="#" className="group block">
                         <div className="bg-gradient-to-r from-[#ecc94b] to-[#d4af37] p-[1px] rounded-full">
-                          <div className="px-8 py-4 rounded-full bg-[#1a1a1a] hover:bg-opacity-80 transition-all duration-300">
-                            <div className="flex items-center justify-center gap-3">
-                              <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecc94b] to-[#d4af37]">
+                          <div className="px-6 py-3 rounded-full bg-[#1a1a1a] hover:bg-opacity-80 transition-all duration-300">
+                            <div className="flex items-center justify-center gap-2">
+                              <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecc94b] to-[#d4af37]">
                                 Get Instant Access
                               </span>
                               <svg 
-                                className="w-6 h-6 transform group-hover:translate-x-2 transition-transform duration-300" 
+                                className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" 
                                 fill="none" 
                                 stroke="url(#gradient)" 
                                 viewBox="0 0 24 24"
@@ -167,8 +167,8 @@ const ProductImages: React.FC = () => {
                     </div>
 
                     {/* Bottom Note */}
-                    <div className="mt-6 text-center">
-                      <p className="text-gray-500 text-sm">
+                    <div className="mt-4 text-center">
+                      <p className="text-gray-500 text-xs">
                         * Limited time offer - Get all bonuses worth $11,094 today
                       </p>
                     </div>
