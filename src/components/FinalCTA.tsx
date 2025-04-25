@@ -1,27 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Sparkles, Star, Shield, Clock } from 'lucide-react';
 
-const floatingTestimonials = [
-  { text: "This changed my entire business!", author: "Mark R." },
-  { text: "Best decision of my career!", author: "Lisa M." },
-  { text: "The results are incredible!", author: "John D." }
-];
-
 const FinalCTA: React.FC = () => {
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [showConfetti, setShowConfetti] = useState(false);
   const { scrollYProgress } = useScroll();
   
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
   const opacity = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % floatingTestimonials.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section id="ultimate-cta" className="py-32 relative overflow-hidden bg-black">
@@ -33,29 +19,6 @@ const FinalCTA: React.FC = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#ecc94b]/20 rounded-full blur-[120px] animate-pulse"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ecc94b]/10 rounded-full blur-[90px] animate-pulse animation-delay-1000"></div>
       </motion.div>
-
-      {/* Floating Testimonials */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTestimonial}
-            initial={{ opacity: 0, y: 20, x: '-50%' }}
-            animate={{ opacity: 1, y: 0, x: '-50%' }}
-            exit={{ opacity: 0, y: -20, x: '-50%' }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="absolute top-1/4 left-1/4"
-          >
-            <div className="bg-white/5 backdrop-blur-lg rounded-lg p-4 shadow-lg border border-white/10">
-              <p className="text-white/90 text-sm">
-                {floatingTestimonials[activeTestimonial].text}
-              </p>
-              <p className="text-[#ecc94b] text-xs mt-2">
-                - {floatingTestimonials[activeTestimonial].author}
-              </p>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
 
       {/* Confetti Effect */}
       {showConfetti && (
