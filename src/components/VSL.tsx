@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
+import VideoLoader from './VideoLoader';
 
 const VSL: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const handlePlayClick = () => {
@@ -10,6 +12,10 @@ const VSL: React.FC = () => {
         'https://player.vimeo.com/video/1078146633?autoplay=1&color=808080&title=0&byline=0&portrait=0';
       setIsPlaying(true);
     }
+  };
+
+  const handleIframeLoad = () => {
+    setIsLoading(false);
   };
 
   return (
@@ -43,8 +49,8 @@ const VSL: React.FC = () => {
             author
           </p>
 
-          {/* Sound Notice - Moved above video */}
-          <div className="flex items-center justify-center gap-2 mb-4 text-gray-300">
+          {/* Sound Notice */}
+          <div className="flex items-center justify-center gap-2 text-gray-300 mb-6">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -57,14 +63,13 @@ const VSL: React.FC = () => {
                 clipRule="evenodd"
               />
             </svg>
-            <span className="text-sm bg-gradient-to-r from-white to-[#ecc94b] bg-clip-text text-transparent">
-              Click play to enable sound and discover your path to success
-            </span>
+            <span>Click play to enable sound and discover your path to success</span>
           </div>
 
           {/* Video Container */}
           <div className="relative max-w-4xl mx-auto">
             <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gray-900">
+              {isLoading && <VideoLoader />}
               <iframe
                 ref={iframeRef}
                 className="absolute top-0 left-0 w-full h-full"
@@ -72,6 +77,7 @@ const VSL: React.FC = () => {
                 frameBorder="0"
                 allow="autoplay; fullscreen"
                 allowFullScreen
+                onLoad={handleIframeLoad}
               ></iframe>
 
               {!isPlaying && (
