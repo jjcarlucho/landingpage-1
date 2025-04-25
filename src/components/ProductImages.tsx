@@ -62,7 +62,7 @@ const ProductImages: React.FC = () => {
                     Your Wish Is Your Command
                   </h3>
                   <p className="text-gray-400 mb-1">Legendary manifestation audios</p>
-                  <p className="text-gray-300 font-semibold">Value: $10,000</p>
+                  <p className="text-gray-300 font-semibold">Value: $10.000</p>
                 </div>
               </div>
 
