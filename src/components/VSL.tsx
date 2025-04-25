@@ -102,19 +102,19 @@ const VSL: React.FC = () => {
           {/* Trust Signals */}
           <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div className="bg-[#1a1a1a]/80 backdrop-blur-sm p-6 rounded-xl">
-              <div className="text-4xl font-bold text-gray-200 mb-1">1,847+</div>
+              <div className="text-4xl font-bold bg-gradient-to-r from-white to-[#ecc94b] bg-clip-text text-transparent mb-1">1,847+</div>
               <div className="text-gray-400 text-sm">Success Stories</div>
             </div>
             <div className="bg-[#1a1a1a]/80 backdrop-blur-sm p-6 rounded-xl">
-              <div className="text-4xl font-bold text-gray-200 mb-1">15k+</div>
+              <div className="text-4xl font-bold bg-gradient-to-r from-white to-[#ecc94b] bg-clip-text text-transparent mb-1">15k+</div>
               <div className="text-gray-400 text-sm">Students Worldwide</div>
             </div>
             <div className="bg-[#1a1a1a]/80 backdrop-blur-sm p-6 rounded-xl">
-              <div className="text-4xl font-bold text-gray-200 mb-1">4.9/5</div>
+              <div className="text-4xl font-bold bg-gradient-to-r from-white to-[#ecc94b] bg-clip-text text-transparent mb-1">4.9/5</div>
               <div className="text-gray-400 text-sm">Average Rating</div>
             </div>
             <div className="bg-[#1a1a1a]/80 backdrop-blur-sm p-6 rounded-xl">
-              <div className="text-4xl font-bold text-gray-200 mb-1">15 min</div>
+              <div className="text-4xl font-bold bg-gradient-to-r from-white to-[#ecc94b] bg-clip-text text-transparent mb-1">15 min</div>
               <div className="text-gray-400 text-sm">Quick Watch</div>
             </div>
           </div>
