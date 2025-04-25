@@ -93,11 +93,9 @@ const Hero: React.FC = () => {
               <span className="text-[#ecc94b] font-bold">1,847+</span>
               <p className="text-gray-400 text-sm">Success Stories</p>
             </div>
-            <div className="flex items-center">
-              <div className="bg-[#ecc94b]/10 rounded-full p-2">
-                <span className="text-[#ecc94b] font-bold">4.9/5</span>
-              </div>
-              <span className="ml-2 text-gray-400">User Rating</span>
+            <div className="text-center">
+              <span className="text-[#ecc94b] font-bold">4.9/5</span>
+              <p className="text-gray-400 text-sm">User Rating</p>
             </div>
           </motion.div>
         </div>
