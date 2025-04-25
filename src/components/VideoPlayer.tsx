@@ -16,18 +16,24 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
     videoHash ? `?h=${videoHash}&` : '?'
   }background=1&loop=1&autopause=0&muted=1&controls=0&playsinline=1`;
 
-  // URL para el video principal
+  // URL para el video principal (sin autoplay para evitar problemas)
   const mainVideoSrc = `https://player.vimeo.com/video/${videoId}${
     videoHash ? `?h=${videoHash}&` : '?'
-  }autoplay=1&muted=0&controls=0&loop=0&autopause=0&api=1`;
+  }muted=0&controls=0&loop=0&autopause=0&api=1&transparent=1`;
 
   useEffect(() => {
-    if (hasInteracted) {
+    if (hasInteracted && playerRef.current) {
       // @ts-ignore
       const player = new Vimeo.Player(playerRef.current);
       player.on('play', () => setIsPlaying(true));
       player.on('pause', () => setIsPlaying(false));
-      setIsPlaying(true);
+      
+      // Reproducir el video manualmente después de la interacción
+      player.play().then(() => {
+        setIsPlaying(true);
+      }).catch((error: any) => {
+        console.error('Error playing video:', error);
+      });
     }
   }, [hasInteracted]);
 
@@ -42,7 +48,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
       } else {
         player.play();
       }
-      setIsPlaying(!isPlaying);
     }
   };
 
@@ -94,8 +99,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
 
       {/* Controles de play/pause que aparecen al hacer hover */}
       {hasInteracted && isHovering && (
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          <div className="w-20 h-20 rounded-full bg-[#ecc94b]/20 border border-[#ecc94b]/30 flex items-center justify-center transform hover:scale-110 transition-transform">
+        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+          <div className="pointer-events-auto w-20 h-20 rounded-full bg-[#ecc94b]/20 border border-[#ecc94b]/30 flex items-center justify-center transform hover:scale-110 transition-transform">
             <span className="text-4xl text-[#ecc94b] drop-shadow-lg">
               {isPlaying ? '❚❚' : '▶'}
             </span>
