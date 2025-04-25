@@ -65,7 +65,7 @@ const FinalCTA: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-white mb-2">Exclusive Bonuses Included</h3>
-                    <p className="text-gray-300">Get instant access to premium bonuses worth over $11,000.</p>
+                    <p className="text-gray-300">Get instant access to premium bonuses worth over $1,311.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
