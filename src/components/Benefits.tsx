@@ -36,7 +36,7 @@ const benefits = [
   {
     icon: Trophy,
     title: 'Guaranteed Results',
-    description: '30-day money-back guarantee if you're not satisfied',
+    description: "30-day money-back guarantee if you're not satisfied",
     color: 'from-orange-500/20 to-orange-600/20'
   }
 ];
