@@ -1,249 +1,42 @@
-import React, { useState, useRef, useEffect } from 'react';
-import VideoLoader from './VideoLoader';
+import React from 'react';
+import VideoPlayer from './VideoPlayer';
 
 const VSL: React.FC = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [iframeError, setIframeError] = useState(false);
-  const [retryCount, setRetryCount] = useState(0);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-
-  // Video configuration
-  const videoConfig = {
-    id: '1078146633',
-    baseUrl: 'https://player.vimeo.com/video',
-    defaultParams: 'color=808080&title=0&byline=0&portrait=0&dnt=1&quality=1080p',
-  };
-
-  // Generate video URL with appropriate parameters
-  const getVideoUrl = (autoplay: boolean = false, muted: boolean = true) => {
-    const params = [
-      videoConfig.defaultParams,
-      autoplay ? 'autoplay=1' : '',
-      muted ? 'muted=1' : '',
-      'background=1',
-      'controls=1',
-      'playsinline=1',
-      'transparent=1',
-      'autopause=0',
-    ].filter(Boolean).join('&');
-
-    return `${videoConfig.baseUrl}/${videoConfig.id}?${params}`;
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (isLoading && retryCount < 3) {
-        handleRetry();
-      } else if (isLoading) {
-        setIframeError(true);
-        setIsLoading(false);
-      }
-    }, 8000);
-
-    return () => clearTimeout(timer);
-  }, [isLoading, retryCount]);
-
-  const handlePlayClick = () => {
-    if (iframeRef.current) {
-      try {
-        setIsLoading(true);
-        const newUrl = getVideoUrl(true, false);
-        iframeRef.current.src = newUrl;
-        setIsPlaying(true);
-        
-        // Post message to ensure autoplay
-        setTimeout(() => {
-          iframeRef.current?.contentWindow?.postMessage({
-            method: 'play'
-          }, '*');
-        }, 1000);
-      } catch (error) {
-        console.error('Error playing video:', error);
-        setIframeError(true);
-        setIsLoading(false);
-      }
-    }
-  };
-
-  const handleIframeLoad = () => {
-    setIsLoading(false);
-    setIframeError(false);
-    setRetryCount(0);
-  };
-
-  const handleIframeError = () => {
-    console.error('Video failed to load');
-    if (retryCount < 3) {
-      handleRetry();
-    } else {
-      setIframeError(true);
-      setIsLoading(false);
-    }
-  };
-
-  const handleRetry = () => {
-    setIsLoading(true);
-    setIframeError(false);
-    setRetryCount(prev => prev + 1);
-    if (iframeRef.current) {
-      const url = getVideoUrl(false, true);
-      iframeRef.current.src = url;
-    }
-  };
-
-  // Listen for messages from the Vimeo player
-  useEffect(() => {
-    const handleMessage = (event: MessageEvent) => {
-      if (event.origin !== 'https://player.vimeo.com') return;
-      
-      try {
-        const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-        
-        if (data.event === 'ready') {
-          setIsLoading(false);
-        } else if (data.event === 'error') {
-          handleIframeError();
-        }
-      } catch (error) {
-        console.error('Error handling Vimeo message:', error);
-      }
-    };
-
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, []);
-
   return (
-    <section className="relative bg-gradient-to-br from-[#1a1a1a] via-[#2c2c2c] to-[#1a1a1a] py-8 md:py-12">
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1920&q=80')] opacity-5"></div>
-
-      <div className="container mx-auto px-4 relative">
+    <section className="relative bg-black pt-24 pb-12 overflow-hidden">
+      <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
-          {/* Alert Bar */}
-          <div className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg mb-6 text-center animate-pulse shadow-lg shadow-red-600/20 border border-red-500/20">
-            <p className="font-bold text-lg tracking-wide">
-              ⚡ SPECIAL OFFER: <span className="text-yellow-300">Only 47 Spots Available</span> At This Price!
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-6xl font-bold mb-8">
+              <span className="bg-gradient-to-r from-white via-[#ecc94b] to-amber-200 bg-clip-text text-transparent">Discover The</span>
+              <span className="text-[#ecc94b]"> One-Book System </span>
+              <span className="bg-gradient-to-r from-white via-[#ecc94b] to-amber-200 bg-clip-text text-transparent">That Helped</span>
+              <br />
+              <span className="text-white">1,847+ Authors</span>
+              <br />
+              <span className="bg-gradient-to-r from-white via-[#ecc94b] to-amber-200 bg-clip-text text-transparent">Turn Their Knowledge Into</span>
+              <span className="text-[#ecc94b]"> $5,000+ </span>
+              <br />
+              <span className="bg-gradient-to-r from-white via-[#ecc94b] to-amber-200 bg-clip-text text-transparent">Monthly Income</span>
+            </h1>
+            <p className="text-2xl text-white max-w-3xl mx-auto mb-6">
+              Without spending thousands on marketing or being a bestselling author
+            </p>
+            <p className="text-xl text-[#ecc94b] flex items-center justify-center gap-2 mb-12 font-medium">
+              <span className="inline-block">🔊</span> Click play to enable sound and discover your path to success
             </p>
           </div>
-
-          {/* Headline */}
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center mb-6 leading-tight">
-            Discover The{' '}
-            <span className="text-yellow-400 underline decoration-wavy decoration-yellow-500/50">
-              One-Book System
-            </span>{' '}
-            That Helped 1,847+ Authors
-            <span className="block mt-2">
-              Turn Their Knowledge Into $5,000+ Monthly Income
-            </span>
-          </h1>
-
-          {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-gray-300 text-center mb-8">
-            Without spending thousands on marketing or being a bestselling
-            author
-          </p>
-
-          {/* Sound Notice */}
-          <div className="flex items-center justify-center gap-2 text-gray-300 mb-6">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <span>Click play to enable sound and discover your path to success</span>
-          </div>
-
-          {/* Video Container */}
-          <div className="relative max-w-4xl mx-auto">
-            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gray-900">
-              {isLoading && !iframeError && <VideoLoader />}
-              {!iframeError ? (
-                <iframe
-                  ref={iframeRef}
-                  className="absolute top-0 left-0 w-full h-full"
-                  src={getVideoUrl()}
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  allowFullScreen
-                  onLoad={handleIframeLoad}
-                  onError={handleIframeError}
-                ></iframe>
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/80">
-                  <div className="text-center p-8">
-                    <p className="text-[#ecc94b] text-lg mb-4">Video temporarily unavailable</p>
-                    <div className="flex gap-4 justify-center">
-                      <button
-                        onClick={handleRetry}
-                        className="bg-[#ecc94b] text-black px-6 py-2 rounded-full font-medium hover:bg-[#f0d75e] transition-colors"
-                      >
-                        Try Again
-                      </button>
-                      <button
-                        onClick={() => window.location.reload()}
-                        className="bg-white/10 text-white px-6 py-2 rounded-full font-medium hover:bg-white/20 transition-colors"
-                      >
-                        Refresh Page
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {!isPlaying && !iframeError && (
-                <div
-                  className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 cursor-pointer transition-all hover:bg-opacity-30"
-                  onClick={handlePlayClick}
-                >
-                  <button className="bg-gradient-to-r from-[#ecc94b] to-[#d4af37] text-black font-bold py-6 px-12 rounded-full flex items-center gap-4 transform hover:scale-105 transition-all duration-300 shadow-2xl hover:from-[#f0d75e] hover:to-[#ecc94b] hover:shadow-[#ecc94b]/25">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-10 w-10"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <span className="text-2xl">WATCH NOW</span>
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Trust Signals */}
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div className="bg-[#1a1a1a]/80 backdrop-blur-sm p-6 rounded-xl">
-              <div className="text-4xl font-bold bg-gradient-to-r from-white to-[#ecc94b] bg-clip-text text-transparent mb-1">1,847+</div>
-              <div className="text-gray-400 text-sm">Success Stories</div>
-            </div>
-            <div className="bg-[#1a1a1a]/80 backdrop-blur-sm p-6 rounded-xl">
-              <div className="text-4xl font-bold bg-gradient-to-r from-white to-[#ecc94b] bg-clip-text text-transparent mb-1">15k+</div>
-              <div className="text-gray-400 text-sm">Students Worldwide</div>
-            </div>
-            <div className="bg-[#1a1a1a]/80 backdrop-blur-sm p-6 rounded-xl">
-              <div className="text-4xl font-bold bg-gradient-to-r from-white to-[#ecc94b] bg-clip-text text-transparent mb-1">4.9/5</div>
-              <div className="text-gray-400 text-sm">Average Rating</div>
-            </div>
-            <div className="bg-[#1a1a1a]/80 backdrop-blur-sm p-6 rounded-xl">
-              <div className="text-4xl font-bold bg-gradient-to-r from-white to-[#ecc94b] bg-clip-text text-transparent mb-1">15 min</div>
-              <div className="text-gray-400 text-sm">Quick Watch</div>
-            </div>
+          
+          <div className="relative z-10">
+            <VideoPlayer videoId="123456789" videoHash="abcdef" />
           </div>
         </div>
+      </div>
+      
+      {/* Background glow effect */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#ecc94b]/30 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ecc94b]/20 rounded-full blur-[90px] animate-pulse animation-delay-1000"></div>
       </div>
     </section>
   );
