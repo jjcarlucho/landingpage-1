@@ -28,15 +28,9 @@ const VSL: React.FC = () => {
           </div>
           
           <div className="relative z-10">
-            <VideoPlayer videoId="123456789" videoHash="abcdef" />
+            <VideoPlayer videoId="1078146633" videoHash="d41d8cd98f00b204e9800998ecf8427e" />
           </div>
         </div>
-      </div>
-      
-      {/* Background glow effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#ecc94b]/30 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ecc94b]/20 rounded-full blur-[90px] animate-pulse animation-delay-1000"></div>
       </div>
     </section>
   );

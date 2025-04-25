@@ -12,7 +12,7 @@ const FinalCTA: React.FC = () => {
 
   return (
     <section id="ultimate-cta" className="py-32 relative overflow-hidden bg-black">
-      {/* Parallax background glow */}
+      {/* Enhanced Parallax background glow */}
       <motion.div 
         className="absolute inset-0 overflow-hidden"
         style={{ y: backgroundY }}
@@ -25,6 +25,19 @@ const FinalCTA: React.FC = () => {
         ></motion.div>
         <motion.div 
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[90px] animate-pulse animation-delay-1000"
+          style={{
+            background: `rgba(236, 201, 75, ${glowIntensity})`
+          }}
+        ></motion.div>
+        {/* Additional pulsing glow effects */}
+        <motion.div 
+          className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full blur-[80px] animate-pulse animation-delay-500"
+          style={{
+            background: `rgba(236, 201, 75, ${glowIntensity})`
+          }}
+        ></motion.div>
+        <motion.div 
+          className="absolute bottom-1/4 right-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full blur-[80px] animate-pulse animation-delay-1500"
           style={{
             background: `rgba(236, 201, 75, ${glowIntensity})`
           }}
