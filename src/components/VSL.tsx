@@ -7,12 +7,32 @@ const VSL: React.FC = () => {
   const [iframeError, setIframeError] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
+  // Video configuration
+  const videoConfig = {
+    id: '1078146633',
+    baseUrl: 'https://player.vimeo.com/video',
+    defaultParams: 'color=808080&title=0&byline=0&portrait=0',
+  };
+
+  // Generate video URL with appropriate parameters
+  const getVideoUrl = (autoplay: boolean = false, muted: boolean = true) => {
+    const params = [
+      videoConfig.defaultParams,
+      autoplay ? 'autoplay=1' : '',
+      muted ? 'muted=1' : '',
+      'background=1',
+    ].filter(Boolean).join('&');
+
+    return `${videoConfig.baseUrl}/${videoConfig.id}?${params}`;
+  };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (isLoading) {
         setIframeError(true);
+        setIsLoading(false);
       }
-    }, 10000); // Set timeout for 10 seconds
+    }, 8000); // Reduced timeout to 8 seconds
 
     return () => clearTimeout(timer);
   }, [isLoading]);
@@ -20,12 +40,14 @@ const VSL: React.FC = () => {
   const handlePlayClick = () => {
     if (iframeRef.current) {
       try {
-        iframeRef.current.src =
-          'https://player.vimeo.com/video/1078146633?autoplay=1&color=808080&title=0&byline=0&portrait=0';
+        setIsLoading(true);
+        const newUrl = getVideoUrl(true, false);
+        iframeRef.current.src = newUrl;
         setIsPlaying(true);
       } catch (error) {
         console.error('Error playing video:', error);
         setIframeError(true);
+        setIsLoading(false);
       }
     }
   };
@@ -36,8 +58,17 @@ const VSL: React.FC = () => {
   };
 
   const handleIframeError = () => {
+    console.error('Video failed to load');
     setIsLoading(false);
     setIframeError(true);
+  };
+
+  const handleRetry = () => {
+    setIsLoading(true);
+    setIframeError(false);
+    if (iframeRef.current) {
+      iframeRef.current.src = getVideoUrl(false, true);
+    }
   };
 
   return (
@@ -96,9 +127,9 @@ const VSL: React.FC = () => {
                 <iframe
                   ref={iframeRef}
                   className="absolute top-0 left-0 w-full h-full"
-                  src="https://player.vimeo.com/video/1078146633?autoplay=1&muted=1&background=1&color=808080&title=0&byline=0&portrait=0"
+                  src={getVideoUrl()}
                   frameBorder="0"
-                  allow="autoplay; fullscreen"
+                  allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen
                   onLoad={handleIframeLoad}
                   onError={handleIframeError}
@@ -107,12 +138,20 @@ const VSL: React.FC = () => {
                 <div className="absolute inset-0 flex items-center justify-center bg-black/80">
                   <div className="text-center p-8">
                     <p className="text-[#ecc94b] text-lg mb-4">Video temporarily unavailable</p>
-                    <button
-                      onClick={() => window.location.reload()}
-                      className="bg-[#ecc94b] text-black px-6 py-2 rounded-full font-medium hover:bg-[#f0d75e] transition-colors"
-                    >
-                      Refresh Page
-                    </button>
+                    <div className="flex gap-4 justify-center">
+                      <button
+                        onClick={handleRetry}
+                        className="bg-[#ecc94b] text-black px-6 py-2 rounded-full font-medium hover:bg-[#f0d75e] transition-colors"
+                      >
+                        Try Again
+                      </button>
+                      <button
+                        onClick={() => window.location.reload()}
+                        className="bg-white/10 text-white px-6 py-2 rounded-full font-medium hover:bg-white/20 transition-colors"
+                      >
+                        Refresh Page
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
