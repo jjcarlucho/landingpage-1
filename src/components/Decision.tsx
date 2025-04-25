@@ -85,22 +85,9 @@ const Decision: React.FC = () => {
                 </p>
               </div>
 
-              <p className="text-xl text-gray-200 mb-12">
-                You're here because you're ready for change. Ready to join an elite group of knowledge entrepreneurs who've mastered the art of turning their expertise into extraordinary income.
+              <p className="text-xl text-gray-200">
+                You're here because you're ready for change. Ready to join an elite group of knowledge entrepreneurs who've mastered the art of turning their expertise into extraordinary income. The only question that remains is: are you ready to take the first step?
               </p>
-
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-                className="inline-block"
-              >
-                <a
-                  href="#pricing"
-                  className="inline-flex items-center bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 text-black text-2xl font-bold py-6 px-12 rounded-full shadow-[0_0_30px_rgba(251,191,36,0.3)] hover:shadow-[0_0_50px_rgba(251,191,36,0.5)] transition-all duration-300"
-                >
-                  Begin Your Transformation Now
-                </a>
-              </motion.div>
             </div>
           </motion.div>
         </div>
