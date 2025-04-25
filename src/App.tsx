@@ -1,7 +1,7 @@
 import React from 'react';
 import Hero from './components/Hero';
 import VSL from './components/VSL';
-import ProductImages from './components/ProductImages';
+import ExclusiveBonuses from './components/ExclusiveBonuses';
 import StorySection from './components/StorySection';
 import Benefits from './components/Benefits';
 import Decision from './components/Decision';
@@ -15,7 +15,7 @@ const App: React.FC = () => {
     <div className="w-full bg-gradient-to-b from-[#1a1a1a] via-[#2c2c2c] to-[#1a1a1a] min-h-screen">
       <VSL />
       <Hero />
-      <ProductImages />
+      <ExclusiveBonuses />
       <StorySection />
       <Benefits />
       <Decision />
