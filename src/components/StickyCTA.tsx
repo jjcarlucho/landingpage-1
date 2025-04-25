@@ -10,6 +10,7 @@ const testimonials = [
 
 const StickyCTA: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showTestimonials, setShowTestimonials] = useState(true);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [spotsLeft, setSpotsLeft] = useState(47);
 
@@ -21,12 +22,15 @@ const StickyCTA: React.FC = () => {
       if (!ultimateCTA) return;
       
       const ultimateCTAPosition = ultimateCTA.getBoundingClientRect().top + window.scrollY;
-      const buffer = 800;
+      const buffer = 1200;
+      const testimonialBuffer = 1500;
 
       if (scrolled > 300 && scrolled < ultimateCTAPosition - buffer) {
         setIsVisible(true);
+        setShowTestimonials(scrolled < ultimateCTAPosition - testimonialBuffer);
       } else {
         setIsVisible(false);
+        setShowTestimonials(false);
       }
     };
 
@@ -93,21 +97,23 @@ const StickyCTA: React.FC = () => {
                 </div>
 
                 {/* Testimonial */}
-                <div className="hidden md:block">
-                  <motion.div
-                    key={testimonialIndex}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="flex items-center gap-2"
-                  >
-                    <Star className="w-4 h-4 text-[#ecc94b]" />
-                    <p className="text-gray-300 text-sm italic">
-                      {testimonials[testimonialIndex].text}{" "}
-                      <span className="text-[#ecc94b]">- {testimonials[testimonialIndex].author}</span>
-                    </p>
-                  </motion.div>
-                </div>
+                {showTestimonials && (
+                  <div className="hidden md:block">
+                    <motion.div
+                      key={testimonialIndex}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      className="flex items-center gap-2"
+                    >
+                      <Star className="w-4 h-4 text-[#ecc94b]" />
+                      <p className="text-gray-300 text-sm italic">
+                        {testimonials[testimonialIndex].text}{" "}
+                        <span className="text-[#ecc94b]">- {testimonials[testimonialIndex].author}</span>
+                      </p>
+                    </motion.div>
+                  </div>
+                )}
 
                 {/* CTA Button */}
                 <motion.div
