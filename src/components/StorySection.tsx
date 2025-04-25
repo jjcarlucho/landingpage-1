@@ -36,6 +36,36 @@ const testimonials = [
     author: "David Chen",
     position: "Digital Product Creator",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100"
+  },
+  {
+    quote: "Within 3 months of applying these principles, my book became the cornerstone of a 6-figure business. The transformation was remarkable.",
+    author: "Rachel Foster",
+    position: "Mindset & Success Coach",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100"
+  },
+  {
+    quote: "I was skeptical at first, but the results speak for themselves. My digital product suite now generates more income than my previous full-time job.",
+    author: "Marcus Rodriguez",
+    position: "Financial Freedom Educator",
+    image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&w=100&h=100"
+  },
+  {
+    quote: "The strategies in this book helped me scale my online course from $2K to $15K per month. It's been a complete game-changer for my business.",
+    author: "Victoria Zhang",
+    position: "Online Course Creator",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&h=100"
+  },
+  {
+    quote: "I've invested in dozens of business programs, but this approach is different. It's helped me build a sustainable 7-figure business from a single book.",
+    author: "Benjamin Taylor",
+    position: "Business Transformation Expert",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&h=100"
+  },
+  {
+    quote: "The simplicity and effectiveness of this system is incredible. My passive income has increased by 340% since implementing these strategies.",
+    author: "Sophia Anderson",
+    position: "Digital Marketing Strategist",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&h=100"
   }
 ];
 
@@ -53,8 +83,7 @@ const StorySection: React.FC = () => {
   return (
     <section className="relative py-24 bg-gradient-to-br from-[#1a1a1a] via-[#2c2c2c] to-[#1a1a1a] overflow-hidden">
       {/* Decorative Elements */}
-      <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-[#ecc94b]/10 via-transparent to-transparent"></div>
+      <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div>
 
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
@@ -113,75 +142,80 @@ const StorySection: React.FC = () => {
 
             {/* Testimonials Section */}
             <div className="relative mt-20">
-              <div className="absolute -inset-4 bg-gradient-to-r from-[#ecc94b] via-[#d4af37] to-[#ecc94b] rounded-2xl opacity-10 blur-xl"></div>
-              <div className="relative bg-[#1a1a1a]/80 backdrop-blur-sm rounded-xl p-8 border border-[#ecc94b]/20">
-                <div className="flex items-center justify-between mb-8">
-                  <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecc94b] to-white">
-                    Success Stories
-                  </h3>
-                  <div className="flex gap-2">
-                    <button 
-                      onClick={prevTestimonial}
-                      className="p-2 rounded-full bg-[#1a1a1a] border border-[#ecc94b]/20 hover:border-[#ecc94b]/40 transition-colors"
-                    >
-                      <svg className="w-6 h-6 text-[#ecc94b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                      </svg>
-                    </button>
-                    <button 
-                      onClick={nextTestimonial}
-                      className="p-2 rounded-full bg-[#1a1a1a] border border-[#ecc94b]/20 hover:border-[#ecc94b]/40 transition-colors"
-                    >
-                      <svg className="w-6 h-6 text-[#ecc94b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-
-                <div className="relative overflow-hidden">
-                  <div 
-                    className="flex transition-transform duration-500 ease-in-out"
-                    style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
-                  >
-                    {testimonials.map((testimonial, index) => (
-                      <div 
-                        key={index}
-                        className="w-full flex-shrink-0 flex flex-col items-start space-y-4"
+              <div className="relative bg-gradient-to-br from-[#2c2c2c] to-[#1a1a1a] rounded-xl overflow-hidden">
+                {/* Glass Effect Background */}
+                <div className="absolute inset-0 bg-white/5 backdrop-blur-3xl"></div>
+                
+                {/* Content */}
+                <div className="relative p-8">
+                  <div className="flex items-center justify-between mb-8">
+                    <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecc94b] to-white">
+                      Success Stories
+                    </h3>
+                    <div className="flex gap-2">
+                      <button 
+                        onClick={prevTestimonial}
+                        className="p-2 rounded-full bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors"
                       >
-                        <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-full overflow-hidden">
-                            <img 
-                              src={testimonial.image} 
-                              alt={testimonial.author}
-                              className="w-full h-full object-cover"
-                            />
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+                      <button 
+                        onClick={nextTestimonial}
+                        className="p-2 rounded-full bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors"
+                      >
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="relative overflow-hidden">
+                    <div 
+                      className="flex transition-transform duration-500 ease-in-out"
+                      style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
+                    >
+                      {testimonials.map((testimonial, index) => (
+                        <div 
+                          key={index}
+                          className="w-full flex-shrink-0 flex flex-col items-start space-y-4"
+                        >
+                          <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-white/10">
+                              <img 
+                                src={testimonial.image} 
+                                alt={testimonial.author}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            <div>
+                              <h4 className="font-bold text-white">{testimonial.author}</h4>
+                              <p className="text-sm text-gray-400">{testimonial.position}</p>
+                            </div>
                           </div>
-                          <div>
-                            <h4 className="font-bold text-white">{testimonial.author}</h4>
-                            <p className="text-sm text-gray-400">{testimonial.position}</p>
-                          </div>
+                          <blockquote className="text-lg text-gray-300 italic">
+                            "{testimonial.quote}"
+                          </blockquote>
                         </div>
-                        <blockquote className="text-lg text-gray-300 italic">
-                          "{testimonial.quote}"
-                        </blockquote>
-                      </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-6 flex justify-center gap-2">
+                    {testimonials.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentTestimonial(index)}
+                        className={`w-2 h-2 rounded-full transition-colors ${
+                          index === currentTestimonial 
+                            ? 'bg-white' 
+                            : 'bg-white/20 hover:bg-white/40'
+                        }`}
+                      />
                     ))}
                   </div>
-                </div>
-
-                <div className="mt-6 flex justify-center gap-2">
-                  {testimonials.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentTestimonial(index)}
-                      className={`w-2 h-2 rounded-full transition-colors ${
-                        index === currentTestimonial 
-                          ? 'bg-[#ecc94b]' 
-                          : 'bg-gray-600 hover:bg-gray-500'
-                      }`}
-                    />
-                  ))}
                 </div>
               </div>
             </div>
