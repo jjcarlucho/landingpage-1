@@ -18,7 +18,8 @@ export default {
         'bounce-slow': 'bounce 3s infinite',
         'blob': 'blob 7s infinite',
         'gradient': 'gradient 3s ease infinite',
-        'gradient-slow': 'gradient 8s ease infinite',
+        'gradient-slow': 'gradient 6s ease infinite',
+        'shimmer': 'shimmer 2s infinite',
       },
       keyframes: {
         fadeIn: {
@@ -35,33 +36,38 @@ export default {
             transform: 'translateY(0)'
           },
         },
-        blob: {
-          '0%': {
-            transform: 'translate(0px, 0px) scale(1)',
-          },
-          '33%': {
-            transform: 'translate(30px, -50px) scale(1.1)',
-          },
-          '66%': {
-            transform: 'translate(-20px, 20px) scale(0.9)',
-          },
-          '100%': {
-            transform: 'translate(0px, 0px) scale(1)',
-          },
+        shimmer: {
+          '0%': { backgroundPositionX: '200%' },
+          '100%': { backgroundPositionX: '-200%' },
         },
         gradient: {
-          '0%': {
-            'background-position': '0% 50%',
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center'
           },
           '50%': {
-            'background-position': '100% 50%',
+            'background-size': '200% 200%',
+            'background-position': 'right center'
+          }
+        },
+        blob: {
+          '0%': {
+            transform: 'translate(0px, 0px) scale(1)'
+          },
+          '33%': {
+            transform: 'translate(30px, -50px) scale(1.1)'
+          },
+          '66%': {
+            transform: 'translate(-20px, 20px) scale(0.9)'
           },
           '100%': {
-            'background-position': '0% 50%',
-          },
-        },
+            transform: 'translate(0px, 0px) scale(1)'
+          }
+        }
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 };

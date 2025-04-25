@@ -1,23 +1,38 @@
-import React from 'react';
-import Hero from './components/Hero';
+import React, { lazy, Suspense } from 'react';
+import LazyComponent from './components/LazyComponent';
 import VSL from './components/VSL';
-import ExclusiveBonuses from './components/ExclusiveBonuses';
-import StorySection from './components/StorySection';
-import Benefits from './components/Benefits';
-import Decision from './components/Decision';
-import UltimateCTA from './components/FinalCTA';
-import StickyCTA from './components/StickyCTA';
+
+// Lazy load components
+const Hero = lazy(() => import('./components/Hero'));
+const ExclusiveBonuses = lazy(() => import('./components/ExclusiveBonuses'));
+const StorySection = lazy(() => import('./components/StorySection'));
+const Benefits = lazy(() => import('./components/Benefits'));
+const Decision = lazy(() => import('./components/Decision'));
+const UltimateCTA = lazy(() => import('./components/FinalCTA'));
+const StickyCTA = lazy(() => import('./components/StickyCTA'));
 
 const App: React.FC = () => {
   return (
     <div className="w-full bg-gradient-to-b from-[#1a1a1a] via-[#2c2c2c] to-[#1a1a1a] min-h-screen">
       <VSL />
-      <Hero />
-      <ExclusiveBonuses />
-      <StorySection />
-      <Benefits />
-      <Decision />
-      <UltimateCTA />
+      <LazyComponent>
+        <Hero />
+      </LazyComponent>
+      <LazyComponent>
+        <ExclusiveBonuses />
+      </LazyComponent>
+      <LazyComponent>
+        <StorySection />
+      </LazyComponent>
+      <LazyComponent>
+        <Benefits />
+      </LazyComponent>
+      <LazyComponent>
+        <Decision />
+      </LazyComponent>
+      <LazyComponent>
+        <UltimateCTA />
+      </LazyComponent>
       <StickyCTA />
     </div>
   );
