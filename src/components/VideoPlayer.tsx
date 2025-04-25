@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface VideoPlayerProps {
   videoId: string;
@@ -6,45 +6,66 @@ interface VideoPlayerProps {
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
-  // Construimos la URL con los parámetros necesarios:
-  // - controls=0 oculta los controles
-  // - background=1 oculta el logo y botones
-  // - autopause=0 evita que se pause al scrollear
-  // - playsinline=1 reproduce en el mismo contenedor
+  const [isPlaying, setIsPlaying] = useState(false);
+  const playerRef = useRef<HTMLIFrameElement>(null);
+
+  // Construimos la URL con los parámetros necesarios
   const vimeoSrc = `https://player.vimeo.com/video/${videoId}${
     videoHash ? `?h=${videoHash}&` : '?'
-  }controls=0&background=1&autopause=0&playsinline=1&transparent=1`;
+  }transparent=1&playsinline=1&background=0&autopause=0&player_id=vsl_player`;
+
+  useEffect(() => {
+    // Escuchamos los mensajes del iframe de Vimeo
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== 'https://player.vimeo.com') return;
+
+      try {
+        const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+        if (data.event === 'play') {
+          setIsPlaying(true);
+        } else if (data.event === 'pause') {
+          setIsPlaying(false);
+        }
+      } catch (error) {
+        console.error('Error handling Vimeo message:', error);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
+
+  const togglePlay = () => {
+    if (!playerRef.current) return;
+
+    const message = isPlaying ? 'pause' : 'play';
+    playerRef.current.contentWindow?.postMessage({
+      method: message
+    }, '*');
+  };
 
   return (
     <div
-      style={{
-        position: 'relative',
-        width: '100%',
-        paddingTop: '56.25%' /* 16:9 */,
-      }}
-      className="rounded-xl overflow-hidden bg-black shadow-[0_0_50px_rgba(236,201,75,0.1)] cursor-pointer"
-      onClick={() => {
-        // Enviamos mensaje al iframe para alternar play/pause
-        const iframe = document.querySelector('iframe');
-        if (iframe) {
-          iframe.contentWindow?.postMessage('{"method":"play"}', '*');
-        }
-      }}
+      className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-[0_0_50px_rgba(236,201,75,0.1)] cursor-pointer group"
+      onClick={togglePlay}
     >
       <iframe
+        ref={playerRef}
         src={vimeoSrc}
+        className="absolute top-0 left-0 w-full h-full"
         frameBorder="0"
         allow="autoplay; fullscreen; picture-in-picture"
         allowFullScreen
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-        }}
-        title="VSL Video Player"
       ></iframe>
+
+      {/* Overlay for initial play state */}
+      {!isPlaying && (
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity group-hover:bg-black/50">
+          <div className="w-20 h-20 rounded-full bg-[#ecc94b]/20 border border-[#ecc94b]/30 flex items-center justify-center">
+            <span className="text-4xl text-[#ecc94b]">▶</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
