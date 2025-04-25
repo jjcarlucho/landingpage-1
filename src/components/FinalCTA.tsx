@@ -10,14 +10,14 @@ const FinalCTA: React.FC = () => {
   const opacity = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
 
   return (
-    <section id="ultimate-cta" className="py-32 relative overflow-hidden bg-black">
+    <section id="ultimate-cta" className="py-32 relative overflow-hidden bg-gradient-to-b from-black to-gray-900">
       {/* Parallax background glow */}
       <motion.div 
         className="absolute inset-0 overflow-hidden"
         style={{ y: backgroundY }}
       >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#ecc94b]/20 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ecc94b]/10 rounded-full blur-[90px] animate-pulse animation-delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#ecc94b]/30 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ecc94b]/20 rounded-full blur-[90px] animate-pulse animation-delay-1000"></div>
       </motion.div>
 
       {/* Confetti Effect */}
@@ -70,17 +70,29 @@ const FinalCTA: React.FC = () => {
               transition={{ duration: 0.8 }}
               className="inline-block"
             >
-              <span className="inline-flex items-center px-6 py-2 text-lg font-semibold rounded-full bg-[#ecc94b]/10 text-[#ecc94b] border border-[#ecc94b]/20 mb-8">
+              <span className="inline-flex items-center px-6 py-2 text-lg font-semibold rounded-full bg-[#ecc94b]/20 text-[#ecc94b] border border-[#ecc94b]/30 mb-8 shadow-lg shadow-[#ecc94b]/10">
                 <Star className="w-5 h-5 mr-2" />
                 Limited Time Offer
               </span>
             </motion.div>
             
-            <h2 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-white via-amber-200 to-[#ecc94b] bg-clip-text text-transparent">
-              Transform Your Life Today
+            <h2 className="text-5xl md:text-7xl font-bold mb-8">
+              <span className="bg-gradient-to-r from-white to-gray-100 bg-clip-text text-transparent">Discover The</span>
+              <span className="text-[#ecc94b]"> One-Book System </span>
+              <span className="bg-gradient-to-r from-white to-gray-100 bg-clip-text text-transparent">That Helped</span>
+              <br />
+              <span className="text-white">1,847+ Authors</span>
+              <br />
+              <span className="bg-gradient-to-r from-white to-gray-100 bg-clip-text text-transparent">Turn Their Knowledge Into</span>
+              <span className="text-[#ecc94b]"> $5,000+ </span>
+              <br />
+              <span className="bg-gradient-to-r from-white to-gray-100 bg-clip-text text-transparent">Monthly Income</span>
             </h2>
-            <p className="text-2xl text-gray-300 max-w-3xl mx-auto mb-12">
-              Join the elite group of successful individuals who have already changed their lives with our proven system.
+            <p className="text-2xl text-white max-w-3xl mx-auto mb-6">
+              Without spending thousands on marketing or being a bestselling author
+            </p>
+            <p className="text-xl text-[#ecc94b] flex items-center justify-center gap-2 mb-12 font-medium">
+              <span className="inline-block">🔊</span> Click play to enable sound and discover your path to success
             </p>
           </div>
 
@@ -94,42 +106,42 @@ const FinalCTA: React.FC = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-8">
                 <div className="flex items-start space-x-4">
-                  <div className="bg-[#ecc94b]/10 p-3 rounded-xl">
+                  <div className="bg-[#ecc94b]/20 p-3 rounded-xl">
                     <Shield className="w-6 h-6 text-[#ecc94b]" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-white mb-2">30-Day Money-Back Guarantee</h3>
-                    <p className="text-gray-300">Try it risk-free. If you're not completely satisfied, get a full refund.</p>
+                    <p className="text-gray-200">Try it risk-free. If you're not completely satisfied, get a full refund.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <div className="bg-[#ecc94b]/10 p-3 rounded-xl">
+                  <div className="bg-[#ecc94b]/20 p-3 rounded-xl">
                     <Sparkles className="w-6 h-6 text-[#ecc94b]" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-white mb-2">Exclusive Bonuses Included</h3>
-                    <p className="text-gray-300">Get instant access to premium bonuses worth over $1,311.</p>
+                    <p className="text-gray-200">Get instant access to premium bonuses worth over $1,311.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <div className="bg-[#ecc94b]/10 p-3 rounded-xl">
+                  <div className="bg-[#ecc94b]/20 p-3 rounded-xl">
                     <Clock className="w-6 h-6 text-[#ecc94b]" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-white mb-2">Limited Time Offer</h3>
-                    <p className="text-gray-300">Special pricing available only during this launch period.</p>
+                    <p className="text-gray-200">Special pricing available only during this launch period.</p>
                   </div>
                 </div>
               </div>
 
               <div className="text-center md:text-left">
                 <div className="mb-8">
-                  <p className="text-gray-400 text-lg mb-2">Regular Price</p>
-                  <p className="text-3xl text-gray-500 line-through">$1,311</p>
-                  <p className="text-gray-400 text-lg mt-4 mb-2">Today's Price</p>
+                  <p className="text-gray-300 text-lg mb-2">Regular Price</p>
+                  <p className="text-3xl text-gray-400 line-through">$1,311</p>
+                  <p className="text-gray-300 text-lg mt-4 mb-2">Today's Price</p>
                   <div className="flex items-center justify-center md:justify-start relative overflow-hidden">
                     <span className="text-6xl font-bold text-white">$</span>
-                    <span className="text-8xl font-bold bg-gradient-to-r from-amber-200 to-[#ecc94b] bg-clip-text text-transparent relative">
+                    <span className="text-8xl font-bold bg-gradient-to-r from-[#ecc94b] to-amber-200 bg-clip-text text-transparent relative">
                       11
                       <motion.div
                         className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/30 to-transparent"
@@ -170,7 +182,7 @@ const FinalCTA: React.FC = () => {
           </motion.div>
 
           <div className="text-center mt-8">
-            <p className="text-gray-400">
+            <p className="text-gray-300">
               * One-time payment. No hidden fees. Instant access to all materials.
             </p>
           </div>

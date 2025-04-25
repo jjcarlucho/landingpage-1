@@ -1,42 +1,45 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 
-interface VideoPlayerProps {
-  videoId: string;
-  videoHash?: string;
-}
+const VideoPlayer: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
-  // URL del iframe simplificada: Solo ID y hash de privacidad (si existe)
-  // Quitamos badge, autopause, player_id, app_id, controls, dnt por ahora para probar
-  const vimeoSrc = `https://player.vimeo.com/video/${videoId}${
-    videoHash ? `?h=${videoHash}` : ''
-  }`;
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play();
+        setIsPlaying(true);
+      } else {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
 
   return (
-    // Contenedor con padding-top para aspect ratio 16:9 y relative
-    <div
-      style={{
-        position: 'relative',
-        width: '100%',
-        paddingTop: '56.25%' /* 16:9 */,
-      }}
-      className="rounded-xl overflow-hidden bg-black"
-    >
-      <iframe
-        src={vimeoSrc}
-        frameBorder="0"
-        // Mantenemos los permisos básicos
-        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-        allowFullScreen
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-        }}
-        title="VSL Video Player"
-      ></iframe>
+    <div className="relative w-full aspect-video rounded-2xl overflow-hidden cursor-pointer group">
+      <video
+        ref={videoRef}
+        className="w-full h-full object-cover"
+        playsInline
+        onClick={togglePlay}
+        poster="/thumbnail.jpg"
+      >
+        <source src="/vsl.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      
+      {/* Overlay that only shows before first play */}
+      {!isPlaying && (
+        <div 
+          className="absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity group-hover:bg-black/50"
+          onClick={togglePlay}
+        >
+          <div className="w-20 h-20 rounded-full bg-[#ecc94b]/20 border border-[#ecc94b]/30 flex items-center justify-center">
+            <span className="text-4xl text-[#ecc94b]">▶</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
