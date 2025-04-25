@@ -1,18 +1,62 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Sparkles, Star, Shield, Clock } from 'lucide-react';
 
+const floatingTestimonials = [
+  { text: "This changed my entire business!", author: "Mark R." },
+  { text: "Best decision of my career!", author: "Lisa M." },
+  { text: "The results are incredible!", author: "John D." }
+];
+
 const FinalCTA: React.FC = () => {
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const { scrollYProgress } = useScroll();
+  
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+  const opacity = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % floatingTestimonials.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section id="ultimate-cta" className="py-32 relative overflow-hidden bg-black">
-      {/* Animated background glow */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Parallax background glow */}
+      <motion.div 
+        className="absolute inset-0 overflow-hidden"
+        style={{ y: backgroundY }}
+      >
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#ecc94b]/20 rounded-full blur-[120px] animate-pulse"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ecc94b]/10 rounded-full blur-[90px] animate-pulse animation-delay-1000"></div>
+      </motion.div>
+
+      {/* Floating Testimonials */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          key={activeTestimonial}
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.5 }}
+          transition={{ duration: 0.5 }}
+          className="absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2"
+        >
+          <div className="bg-white/5 backdrop-blur-lg rounded-lg p-4 shadow-lg border border-white/10">
+            <p className="text-white/90 text-sm">
+              {floatingTestimonials[activeTestimonial].text}
+            </p>
+            <p className="text-[#ecc94b] text-xs mt-2">
+              - {floatingTestimonials[activeTestimonial].author}
+            </p>
+          </div>
+        </motion.div>
       </div>
 
       <div className="container mx-auto px-4 relative">
         <motion.div
+          style={{ opacity }}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
