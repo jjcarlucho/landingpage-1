@@ -101,21 +101,21 @@ const VSL: React.FC = () => {
 
           {/* Trust Signals */}
           <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div className="bg-gray-800/50 p-4 rounded-lg backdrop-blur-sm">
-              <div className="text-3xl font-bold text-gray-300">1,847+</div>
-              <div className="text-sm text-gray-400">Success Stories</div>
+            <div className="bg-[#1a1a1a]/80 backdrop-blur-sm p-6 rounded-xl">
+              <div className="text-4xl font-bold text-gray-200 mb-1">1,847+</div>
+              <div className="text-gray-400 text-sm">Success Stories</div>
             </div>
-            <div className="bg-gray-800/50 p-4 rounded-lg backdrop-blur-sm">
-              <div className="text-3xl font-bold text-gray-300">15k+</div>
-              <div className="text-sm text-gray-400">Students Worldwide</div>
+            <div className="bg-[#1a1a1a]/80 backdrop-blur-sm p-6 rounded-xl">
+              <div className="text-4xl font-bold text-gray-200 mb-1">15k+</div>
+              <div className="text-gray-400 text-sm">Students Worldwide</div>
             </div>
-            <div className="bg-gray-800/50 p-4 rounded-lg backdrop-blur-sm">
-              <div className="text-3xl font-bold text-gray-300">4.9/5</div>
-              <div className="text-sm text-gray-400">Average Rating</div>
+            <div className="bg-[#1a1a1a]/80 backdrop-blur-sm p-6 rounded-xl">
+              <div className="text-4xl font-bold text-gray-200 mb-1">4.9/5</div>
+              <div className="text-gray-400 text-sm">Average Rating</div>
             </div>
-            <div className="bg-gray-800/50 p-4 rounded-lg backdrop-blur-sm">
-              <div className="text-3xl font-bold text-gray-300">15 min</div>
-              <div className="text-sm text-gray-400">Quick Watch</div>
+            <div className="bg-[#1a1a1a]/80 backdrop-blur-sm p-6 rounded-xl">
+              <div className="text-4xl font-bold text-gray-200 mb-1">15 min</div>
+              <div className="text-gray-400 text-sm">Quick Watch</div>
             </div>
           </div>
         </div>
