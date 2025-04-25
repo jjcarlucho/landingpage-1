@@ -8,6 +8,7 @@ interface VideoPlayerProps {
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
   const [hasInteracted, setHasInteracted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const playerRef = useRef<HTMLIFrameElement>(null);
 
   // URL para el video de fondo (muted, loop)
@@ -18,21 +19,39 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
   // URL para el video principal
   const mainVideoSrc = `https://player.vimeo.com/video/${videoId}${
     videoHash ? `?h=${videoHash}&` : '?'
-  }autoplay=1&muted=0&controls=0&loop=0&autopause=0`;
+  }autoplay=1&muted=0&controls=0&loop=0&autopause=0&api=1`;
+
+  useEffect(() => {
+    if (hasInteracted) {
+      // @ts-ignore
+      const player = new Vimeo.Player(playerRef.current);
+      player.on('play', () => setIsPlaying(true));
+      player.on('pause', () => setIsPlaying(false));
+      setIsPlaying(true);
+    }
+  }, [hasInteracted]);
 
   const handleClick = () => {
     if (!hasInteracted) {
       setHasInteracted(true);
     } else {
-      // Solo cambiamos el estado de reproducción para la UI
+      // @ts-ignore
+      const player = new Vimeo.Player(playerRef.current);
+      if (isPlaying) {
+        player.pause();
+      } else {
+        player.play();
+      }
       setIsPlaying(!isPlaying);
     }
   };
 
   return (
     <div
-      className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-[0_0_50px_rgba(236,201,75,0.1)] cursor-pointer"
+      className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-[0_0_50px_rgba(236,201,75,0.1)] cursor-pointer group"
       onClick={handleClick}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
     >
       {!hasInteracted ? (
         // Video de fondo sin sonido
@@ -45,14 +64,17 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
         ></iframe>
       ) : (
         // Video principal con sonido
-        <iframe
-          ref={playerRef}
-          src={mainVideoSrc}
-          className="absolute top-0 left-0 w-full h-full"
-          frameBorder="0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
-        ></iframe>
+        <>
+          <iframe
+            ref={playerRef}
+            src={mainVideoSrc}
+            className="absolute top-0 left-0 w-full h-full"
+            frameBorder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          <script src="https://player.vimeo.com/api/player.js"></script>
+        </>
       )}
 
       {/* Overlay del botón de play inicial */}
@@ -66,6 +88,17 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
             <div className="relative w-32 h-32 rounded-full bg-[#ecc94b]/30 border-2 border-[#ecc94b] flex items-center justify-center transform hover:scale-105 transition-transform">
               <span className="text-6xl text-[#ecc94b] drop-shadow-lg">▶</span>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Controles de play/pause que aparecen al hacer hover */}
+      {hasInteracted && isHovering && (
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+          <div className="w-20 h-20 rounded-full bg-[#ecc94b]/20 border border-[#ecc94b]/30 flex items-center justify-center transform hover:scale-110 transition-transform">
+            <span className="text-4xl text-[#ecc94b] drop-shadow-lg">
+              {isPlaying ? '❚❚' : '▶'}
+            </span>
           </div>
         </div>
       )}
