@@ -5,7 +5,6 @@ import ExclusiveBonuses from './components/ExclusiveBonuses';
 import StorySection from './components/StorySection';
 import Benefits from './components/Benefits';
 import Decision from './components/Decision';
-import Pricing from './components/Pricing';
 import UltimateCTA from './components/FinalCTA';
 import StickyCTA from './components/StickyCTA';
 
@@ -18,7 +17,6 @@ const App: React.FC = () => {
       <StorySection />
       <Benefits />
       <Decision />
-      <Pricing />
       <UltimateCTA />
       <StickyCTA />
     </div>

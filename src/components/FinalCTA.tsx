@@ -4,7 +4,7 @@ import { ArrowRight, Sparkles, Star, Shield, Clock } from 'lucide-react';
 
 const FinalCTA: React.FC = () => {
   return (
-    <section className="py-32 relative overflow-hidden bg-black">
+    <section id="ultimate-cta" className="py-32 relative overflow-hidden bg-black">
       {/* Animated background glow */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#ecc94b]/20 rounded-full blur-[120px] animate-pulse"></div>

@@ -8,7 +8,14 @@ const StickyCTA: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY;
-      if (scrolled > 300) {
+      const ultimateCTA = document.getElementById('ultimate-cta');
+      
+      if (!ultimateCTA) return;
+      
+      const ultimateCTAPosition = ultimateCTA.getBoundingClientRect().top + window.scrollY;
+      const buffer = 800; // Hide 800px before reaching the UltimateCTA
+
+      if (scrolled > 300 && scrolled < ultimateCTAPosition - buffer) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
