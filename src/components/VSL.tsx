@@ -8,21 +8,21 @@ const VSL: React.FC = () => {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-6xl font-bold mb-8">
-              <span className="text-white">Discover The</span>
-              <span className="bg-gradient-to-r from-[#ecc94b] via-amber-200 to-[#ecc94b] bg-clip-text text-transparent"> One-Book System </span>
-              <span className="text-white">That Helped</span>
+              <span className="bg-gradient-to-r from-white via-[#ecc94b] to-white bg-clip-text text-transparent">Discover The</span>
+              <span className="text-[#ecc94b]"> One-Book System </span>
+              <span className="bg-gradient-to-r from-white via-[#ecc94b] to-white bg-clip-text text-transparent">That Helped</span>
               <br />
-              <span className="bg-gradient-to-r from-white via-amber-100 to-white bg-clip-text text-transparent">1,847+ Authors</span>
+              <span className="text-white">1,847+ Authors</span>
               <br />
-              <span className="text-white">Turn Their Knowledge Into</span>
-              <span className="bg-gradient-to-r from-[#ecc94b] via-amber-200 to-[#ecc94b] bg-clip-text text-transparent"> $5,000+ </span>
+              <span className="bg-gradient-to-r from-white via-[#ecc94b] to-white bg-clip-text text-transparent">Turn Their Knowledge Into</span>
+              <span className="text-[#ecc94b]"> $5,000+ </span>
               <br />
-              <span className="text-white">Monthly Income</span>
+              <span className="bg-gradient-to-r from-white via-[#ecc94b] to-white bg-clip-text text-transparent">Monthly Income</span>
             </h1>
             <p className="text-2xl text-gray-200 max-w-3xl mx-auto mb-6">
               Without spending thousands on marketing or being a bestselling author
             </p>
-            <p className="text-lg text-amber-200/90 flex items-center justify-center gap-2 mb-12">
+            <p className="text-xl text-[#ecc94b] flex items-center justify-center gap-2 mb-12 font-medium">
               <span className="inline-block">🔊</span> Click play to enable sound and discover your path to success
             </p>
           </div>
