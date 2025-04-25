@@ -46,13 +46,10 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex justify-center"
           >
-            <Button primary className="text-lg px-8 py-4">
-              Start Your Journey Now
-            </Button>
-            <Button secondary className="text-lg px-8 py-4">
-              Watch Success Stories
+            <Button primary className="text-xl px-12 py-6 transform hover:scale-105 transition-all duration-300">
+              Begin Your Transformation Now
             </Button>
           </motion.div>
 
