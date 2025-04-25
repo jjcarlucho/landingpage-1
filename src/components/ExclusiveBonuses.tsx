@@ -6,21 +6,21 @@ const ExclusiveBonuses: React.FC = () => {
     {
       id: 1,
       title: "AI Tools Checklist",
-      description: "Unlock the full potential of artificial intelligence with our comprehensive checklist. This invaluable resource guides you through the most powerful AI tools available today, ensuring you leverage the right technology for maximum impact in your business and daily tasks.",
+      description: "A comprehensive guide to the best AI tools for content creation and marketing. Imagine having a streamlined process for creating content that resonates with your audience. With this checklist, you'll efficiently find the right AI tools to enhance productivity and creativity. Picture using AI to automatically generate catchy headlines, suggest engaging content ideas, and even assist in editing your drafts. This will save you time and allow you to focus on more strategic elements of your content strategy, ensuring your marketing efforts yield better results and reach a wider audience.",
       value: 97,
       image: "/images/Gemini_Generated_Image_tvyw2ttvyw2ttvyw.jpeg"
     },
     {
       id: 2,
       title: "Your Wish Is Your Command",
-      description: "Discover the secrets of masterful prompt engineering. This exclusive guide reveals advanced techniques for crafting the perfect prompts that get you exactly what you want from AI tools. Learn the language that AI understands best and transform your interaction with artificial intelligence.",
+      description: "Una serie de audios legendarios sobre mentalidad, manifestación y Ley de Atracción aplicados a los negocios. Esta colección exclusiva te entrena para pensar como un creador de realidad, no como un operador esclavo de su proyecto. Imagine transforming your mindset to manifest success in business. These audios guide you in applying the Law of Attraction to your entrepreneurial endeavors, teaching you to create your desired reality. Picture yourself shifting from a place of limitation to one of limitless potential. As you integrate these principles, you'll start to see opportunities you never noticed before, attract like-minded collaborators, and naturally align with your business goals, making the path to success more intuitive and less stressful.",
       value: 10000,
-      image: "/images/yourwishisyourcommand.png"
+      image: "/images/yourwishisyourcommand.avif"
     },
     {
       id: 3,
       title: "TFT Course",
-      description: "Experience a breakthrough in emotional freedom with our transformative TFT course. Learn powerful techniques to overcome fears, reduce anxiety, and unlock your true potential. This comprehensive program guides you through proven methods that create lasting positive change in your life.",
+      description: "Aprendé a liberar bloqueos subconscientes y emociones que sabotean tu progreso con esta poderosa técnica de transformación personal. Ideal para emprendedores conscientes que quieren vender desde su centro, sin miedo ni autosabotaje. Imagine being able to clear the mental and emotional obstacles holding you back. This course equips you with techniques to identify and release subconscious blocks, enabling you to approach business from a place of confidence and authenticity. Envision the freedom of operating without fear or self-sabotage, allowing your true passion and purpose to shine through in your offerings. As these blocks dissolve, you'll find greater alignment in your actions, leading to more genuine connections with your clients and increased success in your endeavors.",
       value: 997,
       image: "/images/Gemini_Generated_Image_nyf0pqnyf0pqnyf0.jpeg"
     }
@@ -72,7 +72,7 @@ const ExclusiveBonuses: React.FC = () => {
                 </div>
               </div>
               <h3 className="text-3xl font-bold text-amber-200 mb-4">{bonus.title}</h3>
-              <p className="text-lg text-gray-300 leading-relaxed">{bonus.description}</p>
+              <p className="text-lg text-gray-300 leading-relaxed whitespace-pre-line">{bonus.description}</p>
             </motion.div>
           ))}
         </div>
@@ -99,7 +99,7 @@ const ExclusiveBonuses: React.FC = () => {
               whileTap={{ scale: 0.95 }}
               className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 text-black text-2xl font-bold py-6 px-12 rounded-full shadow-[0_0_30px_rgba(251,191,36,0.3)] hover:shadow-[0_0_50px_rgba(251,191,36,0.5)] transition-all duration-300"
             >
-              Claim Your Exclusive Bonuses Now
+              Claim Your Exclusive Bonuses Now - Only $11.11
             </motion.button>
           </div>
         </motion.div>
