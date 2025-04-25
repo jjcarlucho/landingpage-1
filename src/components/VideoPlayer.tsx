@@ -43,12 +43,18 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
   const handleClick = () => {
     if (!hasInteracted) {
       setHasInteracted(true);
-      setIsPlaying(true);
+      // Pequeño delay para asegurar que el iframe está listo
+      setTimeout(() => {
+        if (playerRef.current) {
+          playerRef.current.contentWindow?.postMessage({
+            method: 'play'
+          }, 'https://player.vimeo.com');
+        }
+      }, 100);
     } else if (playerRef.current) {
-      const message = isPlaying ? 'pause' : 'play';
       playerRef.current.contentWindow?.postMessage({
-        method: message
-      }, '*');
+        method: isPlaying ? 'pause' : 'play'
+      }, 'https://player.vimeo.com');
     }
   };
 
@@ -81,8 +87,14 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
       {/* Overlay del botón de play inicial */}
       {!hasInteracted && (
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity hover:bg-black/50">
-          <div className="w-20 h-20 rounded-full bg-[#ecc94b]/20 border border-[#ecc94b]/30 flex items-center justify-center">
-            <span className="text-4xl text-[#ecc94b]">▶</span>
+          <div className="relative">
+            {/* Anillos pulsantes */}
+            <div className="absolute -inset-4 bg-[#ecc94b]/20 rounded-full animate-ping"></div>
+            <div className="absolute -inset-8 bg-[#ecc94b]/10 rounded-full animate-pulse"></div>
+            {/* Botón principal */}
+            <div className="relative w-32 h-32 rounded-full bg-[#ecc94b]/30 border-2 border-[#ecc94b] flex items-center justify-center transform hover:scale-105 transition-transform">
+              <span className="text-6xl text-[#ecc94b] drop-shadow-lg">▶</span>
+            </div>
           </div>
         </div>
       )}
