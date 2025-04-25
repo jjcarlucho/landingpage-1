@@ -51,7 +51,7 @@ const StickyCTA: React.FC = () => {
                   {/* Price section */}
                   <div className="text-center md:text-left">
                     <div className="flex items-baseline gap-1 mb-1">
-                      <span className="text-gray-400 text-sm line-through">$997</span>
+                      <span className="text-gray-400 text-sm line-through">$1,311</span>
                       <span className="text-2xl font-bold bg-gradient-to-r from-amber-200 to-[#ecc94b] bg-clip-text text-transparent">
                         $11.11
                       </span>

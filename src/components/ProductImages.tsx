@@ -44,7 +44,7 @@ const ProductImages: React.FC = () => {
                     AI Tools Checklist
                   </h3>
                   <p className="text-gray-400 mb-1">The ultimate resource library</p>
-                  <p className="text-gray-300 font-semibold">Value: $97</p>
+                  <p className="text-gray-300 font-semibold">Value: $17</p>
                 </div>
               </div>
 
@@ -62,7 +62,7 @@ const ProductImages: React.FC = () => {
                     Your Wish Is Your Command
                   </h3>
                   <p className="text-gray-400 mb-1">Legendary manifestation audios</p>
-                  <p className="text-gray-300 font-semibold">Value: $10.000</p>
+                  <p className="text-gray-300 font-semibold">Value: $997</p>
                 </div>
               </div>
 
@@ -80,7 +80,7 @@ const ProductImages: React.FC = () => {
                     TFT Course
                   </h3>
                   <p className="text-gray-400 mb-1">Release subconscious blocks</p>
-                  <p className="text-gray-300 font-semibold">Value: $997</p>
+                  <p className="text-gray-300 font-semibold">Value: $297</p>
                 </div>
               </div>
 
@@ -111,7 +111,7 @@ const ProductImages: React.FC = () => {
                         <p className="text-gray-400 uppercase tracking-wider text-xs">Total Value</p>
                         <div className="relative inline-block">
                           <span className="text-3xl font-bold text-white opacity-75 line-through decoration-[#ecc94b]">
-                            $11,094
+                            $1,311
                           </span>
                           <div className="absolute -top-2 -right-3 transform rotate-12">
                             <span className="text-[#ecc94b] text-lg font-bold">*</span>
@@ -169,7 +169,7 @@ const ProductImages: React.FC = () => {
                     {/* Bottom Note */}
                     <div className="mt-4 text-center">
                       <p className="text-gray-500 text-xs">
-                        * Limited time offer - Get all bonuses worth $11,094 today
+                        * Limited time offer - Get all bonuses worth $1,311 today
                       </p>
                     </div>
                   </div>
