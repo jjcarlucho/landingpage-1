@@ -1,8 +1,26 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Button } from './Button';
+import { FaLightbulb, FaRocket, FaHeart } from 'react-icons/fa';
 
 const Hero: React.FC = () => {
+  const features = [
+    {
+      icon: <FaLightbulb className="w-6 h-6" />,
+      title: "Mindset Mastery",
+      description: "Transform your thinking patterns"
+    },
+    {
+      icon: <FaRocket className="w-6 h-6" />,
+      title: "Rapid Growth",
+      description: "Accelerate your success journey"
+    },
+    {
+      icon: <FaHeart className="w-6 h-6" />,
+      title: "Inner Freedom",
+      description: "Release limiting beliefs"
+    }
+  ];
+
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-gray-900 via-[#1a1a1a] to-black overflow-hidden">
       {/* Animated background elements */}
@@ -46,18 +64,30 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex justify-center"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto mb-12"
           >
-            <Button primary className="text-xl px-12 py-6 transform hover:scale-105 transition-all duration-300">
-              Begin Your Transformation Now
-            </Button>
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                className="bg-[#ecc94b]/5 backdrop-blur-sm rounded-xl p-6 border border-[#ecc94b]/10 hover:border-[#ecc94b]/20 transition-all duration-300"
+              >
+                <div className="text-[#ecc94b] mb-4 flex justify-center">
+                  {feature.icon}
+                </div>
+                <h3 className="text-white font-bold text-lg mb-2">{feature.title}</h3>
+                <p className="text-gray-400 text-sm">{feature.description}</p>
+              </motion.div>
+            ))}
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="mt-12 flex items-center justify-center gap-8"
+            className="flex items-center justify-center gap-8"
           >
             <div className="text-center">
               <span className="text-[#ecc94b] font-bold">1,847+</span>
