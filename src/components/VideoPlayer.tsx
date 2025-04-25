@@ -15,51 +15,66 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
     videoHash ? `?h=${videoHash}&` : '?'
   }background=1&loop=1&autopause=0&muted=1&controls=0&playsinline=1`;
 
-  // URL para el video con sonido (agregamos api=1 para habilitar el SDK de Vimeo)
+  // URL para el video principal (con API habilitada)
   const mainVideoSrc = `https://player.vimeo.com/video/${videoId}${
     videoHash ? `?h=${videoHash}&` : '?'
-  }api=1&transparent=1&playsinline=1&controls=0&autopause=0`;
+  }autoplay=0&autopause=0&controls=0&api=1`;
 
   useEffect(() => {
-    // Escuchar mensajes del iframe de Vimeo
-    const handleMessage = (event: MessageEvent) => {
-      if (event.origin !== 'https://player.vimeo.com') return;
-      try {
-        const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-        if (data.event === 'play') {
-          setIsPlaying(true);
-        } else if (data.event === 'pause') {
-          setIsPlaying(false);
-        }
-      } catch (error) {
-        console.error('Error handling Vimeo message:', error);
+    let player: any = null;
+
+    const initializeVimeoPlayer = () => {
+      if (!hasInteracted || !playerRef.current) return;
+
+      // @ts-ignore
+      if (typeof Vimeo === 'undefined') {
+        const script = document.createElement('script');
+        script.src = 'https://player.vimeo.com/api/player.js';
+        script.onload = () => {
+          // @ts-ignore
+          player = new Vimeo.Player(playerRef.current);
+          setupPlayerEvents(player);
+        };
+        document.body.appendChild(script);
+      } else {
+        // @ts-ignore
+        player = new Vimeo.Player(playerRef.current);
+        setupPlayerEvents(player);
       }
     };
 
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, []);
+    const setupPlayerEvents = (player: any) => {
+      player.on('play', () => setIsPlaying(true));
+      player.on('pause', () => setIsPlaying(false));
+      player.ready().then(() => {
+        console.log('Vimeo player is ready');
+      });
+    };
 
-  const handleClick = () => {
+    initializeVimeoPlayer();
+
+    return () => {
+      if (player) {
+        player.unload();
+      }
+    };
+  }, [hasInteracted, videoId]);
+
+  const handleClick = async () => {
     if (!hasInteracted) {
       setHasInteracted(true);
-      // Pequeño delay para asegurar que el iframe está listo
-      setTimeout(() => {
-        if (playerRef.current) {
-          // Enviamos el mensaje en el formato correcto del SDK de Vimeo
-          playerRef.current.contentWindow?.postMessage({
-            method: 'play',
-            value: '1'
-          }, 'https://player.vimeo.com');
+    } else {
+      try {
+        // @ts-ignore
+        const player = new Vimeo.Player(playerRef.current);
+        if (isPlaying) {
+          await player.pause();
+        } else {
+          await player.play();
         }
-      }, 500); // Aumentamos el delay para dar más tiempo al iframe
-    } else if (playerRef.current) {
-      // Toggle play/pause usando el formato correcto del SDK
-      playerRef.current.contentWindow?.postMessage({
-        method: isPlaying ? 'pause' : 'play',
-        value: '1'
-      }, 'https://player.vimeo.com');
-      setIsPlaying(!isPlaying);
+      } catch (error) {
+        console.error('Error controlling video:', error);
+      }
     }
   };
 
@@ -79,14 +94,17 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
         ></iframe>
       ) : (
         // Video principal con sonido
-        <iframe
-          ref={playerRef}
-          src={mainVideoSrc}
-          className="absolute top-0 left-0 w-full h-full"
-          frameBorder="0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
-        ></iframe>
+        <>
+          <iframe
+            ref={playerRef}
+            src={mainVideoSrc}
+            className="absolute top-0 left-0 w-full h-full"
+            frameBorder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          <script src="https://player.vimeo.com/api/player.js"></script>
+        </>
       )}
 
       {/* Overlay del botón de play inicial */}
