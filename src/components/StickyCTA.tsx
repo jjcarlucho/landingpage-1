@@ -22,11 +22,13 @@ const StickyCTA: React.FC = () => {
       if (!ultimateCTA) return;
       
       const ultimateCTAPosition = ultimateCTA.getBoundingClientRect().top + window.scrollY;
-      const buffer = 1200;
-      const testimonialBuffer = 1500;
+      const buffer = 1500; // Increased buffer distance
+      const testimonialBuffer = 2000; // Even larger buffer for testimonials
 
+      // Show StickyCTA only after scrolling 300px and before reaching UltimateCTA
       if (scrolled > 300 && scrolled < ultimateCTAPosition - buffer) {
         setIsVisible(true);
+        // Show testimonials only when far enough from UltimateCTA
         setShowTestimonials(scrolled < ultimateCTAPosition - testimonialBuffer);
       } else {
         setIsVisible(false);
@@ -34,25 +36,38 @@ const StickyCTA: React.FC = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Throttle scroll event for better performance
+    let timeoutId: number | null = null;
+    const throttledScroll = () => {
+      if (timeoutId) return;
+      timeoutId = window.setTimeout(() => {
+        handleScroll();
+        timeoutId = null;
+      }, 100);
+    };
+
+    window.addEventListener('scroll', throttledScroll);
+    return () => {
+      window.removeEventListener('scroll', throttledScroll);
+      if (timeoutId) window.clearTimeout(timeoutId);
+    };
   }, []);
 
-  // Rotate testimonials
+  // Rotate testimonials with a longer interval
   useEffect(() => {
     const interval = setInterval(() => {
       setTestimonialIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+    }, 6000); // Increased to 6 seconds
     return () => clearInterval(interval);
   }, []);
 
-  // Decrease spots randomly
+  // Decrease spots with a longer interval
   useEffect(() => {
     const interval = setInterval(() => {
       if (spotsLeft > 1) {
         setSpotsLeft((prev) => Math.max(1, prev - Math.floor(Math.random() * 2)));
       }
-    }, 30000);
+    }, 45000); // Increased to 45 seconds
     return () => clearInterval(interval);
   }, [spotsLeft]);
 
@@ -63,7 +78,7 @@ const StickyCTA: React.FC = () => {
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
-          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          transition={{ type: "spring", stiffness: 200, damping: 25 }}
           className="fixed bottom-0 left-0 right-0 z-50"
         >
           <div className="bg-black/90 backdrop-blur-xl border-t border-[#ecc94b]/20">
@@ -104,6 +119,7 @@ const StickyCTA: React.FC = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
                       className="flex items-center gap-2"
                     >
                       <Star className="w-4 h-4 text-[#ecc94b]" />
