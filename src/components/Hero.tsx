@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto"
           >
-            Join over 25,000 successful individuals who have transformed their lives using our proven system. Start your journey today.
+            Join over 1,847+ successful individuals who have transformed their lives using our proven system. Start your journey today.
           </motion.p>
 
           <motion.div
@@ -59,11 +59,9 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="mt-12 flex items-center justify-center gap-8"
           >
-            <div className="flex items-center">
-              <div className="bg-[#ecc94b]/10 rounded-full p-2">
-                <span className="text-[#ecc94b] font-bold">25k+</span>
-              </div>
-              <span className="ml-2 text-gray-400">Success Stories</span>
+            <div className="text-center">
+              <span className="text-[#ecc94b] font-bold">1,847+</span>
+              <p className="text-gray-400 text-sm">Success Stories</p>
             </div>
             <div className="flex items-center">
               <div className="bg-[#ecc94b]/10 rounded-full p-2">

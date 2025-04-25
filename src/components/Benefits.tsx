@@ -99,10 +99,10 @@ const Benefits: React.FC = () => {
                 <div className="relative bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-[#ecc94b]/20 transition-all duration-300">
                   <div className="bg-gradient-to-br from-[#ecc94b]/20 to-[#d4af37]/20 p-3 rounded-xl inline-block mb-6">
                     <Icon className="w-8 h-8 text-[#ecc94b]" />
-                  </div>
+          </div>
                   <h3 className="text-xl font-bold text-white mb-4">{benefit.title}</h3>
                   <p className="text-gray-400">{benefit.description}</p>
-                </div>
+        </div>
               </motion.div>
             );
           })}
