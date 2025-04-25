@@ -3,9 +3,9 @@ import { ArrowRight, Star, Shield, Clock, Users } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const testimonials = [
-  { text: "Best investment I made this year", author: "Sarah J." },
-  { text: "Made $5k in my first month", author: "Michael R." },
-  { text: "The templates are pure gold", author: "Emily T." }
+  { text: 'Best investment I\'ve made this year!', author: 'Sarah J.' },
+  { text: 'Made $5k in my first month!', author: 'Michael R.' },
+  { text: 'The templates are pure gold!', author: 'Emily T.' }
 ];
 
 const StickyCTA: React.FC = () => {
