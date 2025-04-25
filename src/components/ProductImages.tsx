@@ -26,14 +26,9 @@ const ProductImages: React.FC = () => {
 
             {/* Bonuses Section */}
             <div className="space-y-8">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="bg-[#2c2c2c]/80 text-white px-4 py-2 rounded-lg">
-                  VALUE $11.11
-                </div>
-                <h2 className="text-4xl font-bold text-white">
-                  Unlock These Exclusive Bonuses
-                </h2>
-              </div>
+              <h2 className="text-4xl font-bold bg-gradient-to-r from-[#ecc94b] to-white bg-clip-text text-transparent">
+                Unlock These Exclusive Bonuses
+              </h2>
 
               {/* Bonus 1 */}
               <div className="flex items-center gap-6 bg-[#1a1a1a] p-6 rounded-xl hover:bg-[#1a1a1a]/90 transition-all duration-300">
@@ -89,11 +84,26 @@ const ProductImages: React.FC = () => {
                 </div>
               </div>
 
-              {/* CTA Button */}
-              <div className="mt-8">
-                <button className="w-full bg-[#ecc94b] hover:bg-[#d4af37] text-black font-bold text-xl py-4 px-8 rounded-full transition-all duration-300">
-                  Limited Time Offer
-                </button>
+              {/* Enhanced CTA Section */}
+              <div className="bg-gradient-to-r from-gray-800 to-gray-900 p-8 rounded-lg text-center transform hover:scale-105 transition-all duration-300 shadow-xl relative overflow-hidden cursor-pointer border border-[#ecc94b]/20">
+                {/* Animated background effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#ecc94b]/5 to-[#d4af37]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Content */}
+                <div className="relative z-10">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="bg-gradient-to-r from-[#ecc94b] to-[#d4af37] text-black rounded-full px-6 py-2 font-semibold">
+                      Limited Time Offer
+                    </div>
+                    <p className="text-4xl font-bold mb-2 text-white">
+                      Total Value: <span className="line-through opacity-75">$11,094</span>
+                    </p>
+                    <p className="text-2xl font-bold text-white flex items-center gap-2">
+                      Get Everything Today For Only 
+                      <span className="bg-gradient-to-r from-[#ecc94b] to-[#d4af37] text-black rounded-full px-4 py-1">$11.11</span>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
