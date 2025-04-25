@@ -82,7 +82,7 @@ const FinalCTA: React.FC = () => {
               <div className="text-center md:text-left">
                 <div className="mb-8">
                   <p className="text-gray-400 text-lg mb-2">Regular Price</p>
-                  <p className="text-3xl text-gray-500 line-through">$997</p>
+                  <p className="text-3xl text-gray-500 line-through">$1,311</p>
                   <p className="text-gray-400 text-lg mt-4 mb-2">Today's Price</p>
                   <div className="flex items-center justify-center md:justify-start">
                     <span className="text-6xl font-bold text-white">$</span>
