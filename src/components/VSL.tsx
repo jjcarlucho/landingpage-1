@@ -1,21 +1,43 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import VideoLoader from './VideoLoader';
 
 const VSL: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [iframeError, setIframeError] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (isLoading) {
+        setIframeError(true);
+      }
+    }, 10000); // Set timeout for 10 seconds
+
+    return () => clearTimeout(timer);
+  }, [isLoading]);
 
   const handlePlayClick = () => {
     if (iframeRef.current) {
-      iframeRef.current.src =
-        'https://player.vimeo.com/video/1078146633?autoplay=1&color=808080&title=0&byline=0&portrait=0';
-      setIsPlaying(true);
+      try {
+        iframeRef.current.src =
+          'https://player.vimeo.com/video/1078146633?autoplay=1&color=808080&title=0&byline=0&portrait=0';
+        setIsPlaying(true);
+      } catch (error) {
+        console.error('Error playing video:', error);
+        setIframeError(true);
+      }
     }
   };
 
   const handleIframeLoad = () => {
     setIsLoading(false);
+    setIframeError(false);
+  };
+
+  const handleIframeError = () => {
+    setIsLoading(false);
+    setIframeError(true);
   };
 
   return (
@@ -69,18 +91,33 @@ const VSL: React.FC = () => {
           {/* Video Container */}
           <div className="relative max-w-4xl mx-auto">
             <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gray-900">
-              {isLoading && <VideoLoader />}
-              <iframe
-                ref={iframeRef}
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://player.vimeo.com/video/1078146633?autoplay=1&muted=1&background=1&color=808080&title=0&byline=0&portrait=0"
-                frameBorder="0"
-                allow="autoplay; fullscreen"
-                allowFullScreen
-                onLoad={handleIframeLoad}
-              ></iframe>
+              {isLoading && !iframeError && <VideoLoader />}
+              {!iframeError ? (
+                <iframe
+                  ref={iframeRef}
+                  className="absolute top-0 left-0 w-full h-full"
+                  src="https://player.vimeo.com/video/1078146633?autoplay=1&muted=1&background=1&color=808080&title=0&byline=0&portrait=0"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                  onLoad={handleIframeLoad}
+                  onError={handleIframeError}
+                ></iframe>
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/80">
+                  <div className="text-center p-8">
+                    <p className="text-[#ecc94b] text-lg mb-4">Video temporarily unavailable</p>
+                    <button
+                      onClick={() => window.location.reload()}
+                      className="bg-[#ecc94b] text-black px-6 py-2 rounded-full font-medium hover:bg-[#f0d75e] transition-colors"
+                    >
+                      Refresh Page
+                    </button>
+                  </div>
+                </div>
+              )}
 
-              {!isPlaying && (
+              {!isPlaying && !iframeError && (
                 <div
                   className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 cursor-pointer transition-all hover:bg-opacity-30"
                   onClick={handlePlayClick}
