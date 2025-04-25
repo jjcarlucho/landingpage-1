@@ -34,7 +34,7 @@ const ProductImages: React.FC = () => {
               <div className="flex items-center gap-6 bg-[#1a1a1a] p-6 rounded-xl hover:bg-[#1a1a1a]/90 transition-all duration-300">
                 <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
                   <img
-                    src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=200&h=200&q=80"
+                    src="https://images.unsplash.com/photo-1676320831532-fc2f1f3c7fa5?auto=format&fit=crop&w=200&h=200&q=80"
                     alt="AI Tools Checklist"
                     className="w-full h-full object-cover"
                   />
@@ -84,27 +84,58 @@ const ProductImages: React.FC = () => {
                 </div>
               </div>
 
-              {/* Enhanced CTA Section */}
-              <div className="bg-gradient-to-r from-gray-800 to-gray-900 p-8 rounded-lg text-center transform hover:scale-105 transition-all duration-300 shadow-xl relative overflow-hidden cursor-pointer border border-[#ecc94b]/20">
-                {/* Animated background effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#ecc94b]/5 to-[#d4af37]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
-                {/* Content */}
-                <div className="relative z-10">
-                  <div className="flex flex-col items-center gap-4">
-                    <div className="bg-gradient-to-r from-[#ecc94b] to-[#d4af37] text-black rounded-full px-6 py-2 font-semibold">
-                      Limited Time Offer
+              {/* Enhanced Luxury CTA Section */}
+              <a href="#" className="block group">
+                <div className="bg-gradient-to-br from-[#1E1E1E] to-[#2D2D2D] p-8 rounded-2xl shadow-2xl relative overflow-hidden transform transition-all duration-300 hover:scale-[1.02] border border-[#ecc94b]/10">
+                  {/* Glow effect */}
+                  <div className="absolute -inset-px bg-gradient-to-r from-[#ecc94b] via-[#d4af37] to-[#ecc94b] opacity-20 group-hover:opacity-30 transition-opacity duration-300 blur-md"></div>
+                  
+                  {/* Content Container */}
+                  <div className="relative z-10">
+                    {/* Header Badge */}
+                    <div className="inline-block bg-gradient-to-r from-[#ecc94b] to-[#d4af37] p-[2px] rounded-full mb-6">
+                      <div className="px-6 py-2 rounded-full bg-[#1E1E1E] bg-opacity-90">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ecc94b] to-[#d4af37] font-bold">
+                          Limited Time Offer
+                        </span>
+                      </div>
                     </div>
-                    <p className="text-4xl font-bold mb-2 text-white">
-                      Total Value: <span className="line-through opacity-75">$11,094</span>
-                    </p>
-                    <p className="text-2xl font-bold text-white flex items-center gap-2">
-                      Get Everything Today For Only 
-                      <span className="bg-gradient-to-r from-[#ecc94b] to-[#d4af37] text-black rounded-full px-4 py-1">$11.11</span>
-                    </p>
+
+                    {/* Price Display */}
+                    <div className="space-y-4">
+                      <div className="flex flex-col items-center gap-2">
+                        <p className="text-4xl font-bold text-white">
+                          Total Value: <span className="line-through opacity-75">$11,094</span>
+                        </p>
+                        <div className="flex items-center gap-3">
+                          <p className="text-2xl font-bold text-white">Get Everything Today For Only</p>
+                          <div className="bg-gradient-to-r from-[#ecc94b] to-[#d4af37] p-[2px] rounded-full">
+                            <div className="px-6 py-2 rounded-full bg-[#1E1E1E]">
+                              <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecc94b] to-[#d4af37]">
+                                $11.11
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* CTA Arrow */}
+                    <div className="mt-6 flex justify-center">
+                      <div className="bg-gradient-to-r from-[#ecc94b] to-[#d4af37] p-[2px] rounded-full">
+                        <div className="px-8 py-3 rounded-full bg-[#1E1E1E] group-hover:bg-opacity-90 transition-all duration-300">
+                          <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecc94b] to-[#d4af37] flex items-center gap-2">
+                            Claim Your Copy Now
+                            <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" className="text-[#ecc94b]" />
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
