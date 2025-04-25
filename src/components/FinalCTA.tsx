@@ -7,7 +7,8 @@ const FinalCTA: React.FC = () => {
   const { scrollYProgress } = useScroll();
   
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
-  const opacity = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [0.5, 1]);
+  const glowIntensity = useTransform(scrollYProgress, [0, 1], ['30%', '50%']);
 
   return (
     <section id="ultimate-cta" className="py-32 relative overflow-hidden bg-black">
@@ -16,8 +17,18 @@ const FinalCTA: React.FC = () => {
         className="absolute inset-0 overflow-hidden"
         style={{ y: backgroundY }}
       >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#ecc94b]/30 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ecc94b]/20 rounded-full blur-[90px] animate-pulse animation-delay-1000"></div>
+        <motion.div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[120px] animate-pulse"
+          style={{
+            background: `rgba(236, 201, 75, ${glowIntensity})`
+          }}
+        ></motion.div>
+        <motion.div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[90px] animate-pulse animation-delay-1000"
+          style={{
+            background: `rgba(236, 201, 75, ${glowIntensity})`
+          }}
+        ></motion.div>
       </motion.div>
 
       {/* Confetti Effect */}
@@ -56,7 +67,7 @@ const FinalCTA: React.FC = () => {
       <div className="container mx-auto px-4 relative">
         <motion.div
           style={{ opacity }}
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0.5, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
