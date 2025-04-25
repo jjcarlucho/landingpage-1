@@ -97,7 +97,7 @@ const FinalCTA: React.FC = () => {
                   className="inline-block"
                 >
                   <a
-                    href="#checkout"
+                    href="https://pay.hotmart.com/P99406062G"
                     className="group relative inline-flex items-center justify-center px-12 py-6 text-2xl font-bold text-black bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 rounded-full overflow-hidden shadow-[0_0_50px_rgba(236,201,75,0.3)] hover:shadow-[0_0_100px_rgba(236,201,75,0.5)] transition-all duration-300"
                   >
                     <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>

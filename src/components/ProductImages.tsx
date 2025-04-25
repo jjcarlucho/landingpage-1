@@ -134,7 +134,7 @@ const ProductImages: React.FC = () => {
 
                     {/* Bottom CTA Button */}
                     <div className="mt-6">
-                      <a href="#" className="group block">
+                      <a href="https://pay.hotmart.com/P99406062G" className="group block">
                         <div className="bg-gradient-to-r from-[#ecc94b] to-[#d4af37] p-[1px] rounded-full">
                           <div className="px-6 py-3 rounded-full bg-[#1a1a1a] hover:bg-opacity-80 transition-all duration-300">
                             <div className="flex items-center justify-center gap-2">

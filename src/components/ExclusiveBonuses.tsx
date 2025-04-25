@@ -98,6 +98,7 @@ const ExclusiveBonuses: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 text-black text-2xl font-bold py-6 px-12 rounded-full shadow-[0_0_30px_rgba(251,191,36,0.3)] hover:shadow-[0_0_50px_rgba(251,191,36,0.5)] transition-all duration-300"
+              onClick={() => window.location.href = 'https://pay.hotmart.com/P99406062G'}
             >
               Claim Your Exclusive Bonuses Now - Only $11.11
             </motion.button>

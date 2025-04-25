@@ -69,7 +69,7 @@ const StickyCTA: React.FC = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <a
-                    href="#checkout"
+                    href="https://pay.hotmart.com/P99406062G"
                     className="group relative inline-flex items-center justify-center px-8 py-3 text-lg font-bold text-black bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 rounded-full overflow-hidden shadow-[0_0_50px_rgba(236,201,75,0.3)] hover:shadow-[0_0_100px_rgba(236,201,75,0.5)] transition-all duration-300"
                   >
                     {/* Hover gradient overlay */}
