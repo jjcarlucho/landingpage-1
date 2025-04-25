@@ -5,13 +5,14 @@ const VSL: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [iframeError, setIframeError] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   // Video configuration
   const videoConfig = {
     id: '1078146633',
     baseUrl: 'https://player.vimeo.com/video',
-    defaultParams: 'color=808080&title=0&byline=0&portrait=0',
+    defaultParams: 'color=808080&title=0&byline=0&portrait=0&dnt=1&quality=1080p',
   };
 
   // Generate video URL with appropriate parameters
@@ -21,6 +22,10 @@ const VSL: React.FC = () => {
       autoplay ? 'autoplay=1' : '',
       muted ? 'muted=1' : '',
       'background=1',
+      'controls=1',
+      'playsinline=1',
+      'transparent=1',
+      'autopause=0',
     ].filter(Boolean).join('&');
 
     return `${videoConfig.baseUrl}/${videoConfig.id}?${params}`;
@@ -28,14 +33,16 @@ const VSL: React.FC = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (isLoading) {
+      if (isLoading && retryCount < 3) {
+        handleRetry();
+      } else if (isLoading) {
         setIframeError(true);
         setIsLoading(false);
       }
-    }, 8000); // Reduced timeout to 8 seconds
+    }, 8000);
 
     return () => clearTimeout(timer);
-  }, [isLoading]);
+  }, [isLoading, retryCount]);
 
   const handlePlayClick = () => {
     if (iframeRef.current) {
@@ -44,6 +51,13 @@ const VSL: React.FC = () => {
         const newUrl = getVideoUrl(true, false);
         iframeRef.current.src = newUrl;
         setIsPlaying(true);
+        
+        // Post message to ensure autoplay
+        setTimeout(() => {
+          iframeRef.current?.contentWindow?.postMessage({
+            method: 'play'
+          }, '*');
+        }, 1000);
       } catch (error) {
         console.error('Error playing video:', error);
         setIframeError(true);
@@ -55,21 +69,50 @@ const VSL: React.FC = () => {
   const handleIframeLoad = () => {
     setIsLoading(false);
     setIframeError(false);
+    setRetryCount(0);
   };
 
   const handleIframeError = () => {
     console.error('Video failed to load');
-    setIsLoading(false);
-    setIframeError(true);
+    if (retryCount < 3) {
+      handleRetry();
+    } else {
+      setIframeError(true);
+      setIsLoading(false);
+    }
   };
 
   const handleRetry = () => {
     setIsLoading(true);
     setIframeError(false);
+    setRetryCount(prev => prev + 1);
     if (iframeRef.current) {
-      iframeRef.current.src = getVideoUrl(false, true);
+      const url = getVideoUrl(false, true);
+      iframeRef.current.src = url;
     }
   };
+
+  // Listen for messages from the Vimeo player
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== 'https://player.vimeo.com') return;
+      
+      try {
+        const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+        
+        if (data.event === 'ready') {
+          setIsLoading(false);
+        } else if (data.event === 'error') {
+          handleIframeError();
+        }
+      } catch (error) {
+        console.error('Error handling Vimeo message:', error);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
 
   return (
     <section className="relative bg-gradient-to-br from-[#1a1a1a] via-[#2c2c2c] to-[#1a1a1a] py-8 md:py-12">
