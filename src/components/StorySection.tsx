@@ -92,20 +92,20 @@ const StorySection: React.FC = () => {
             {/* Discovery Section */}
             <div className="space-y-8">
               <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecc94b] to-white">
-                How I Discovered This One-Book-Only Secret
+                The Genesis of a Revolutionary Discovery
               </h2>
-              <p className="text-xl text-gray-400 leading-relaxed">
-                Many assume I've always been at the forefront of digital products, but here's the truth:
+              <p className="text-xl text-gray-300 leading-relaxed font-light">
+                What I'm about to share transcends conventional business wisdom—it's the cornerstone of digital entrepreneurship that elite performers have kept hidden for years.
               </p>
               <div className="prose prose-lg prose-invert">
                 <p className="text-gray-300">
-                  I began my journey completely unfamiliar with digital entrepreneurship, confined to a soul-draining corporate position for years. The turning point came with my decision to write my first book—a choice that unexpectedly immersed me in the world of online business.
+                  Like many, I once found myself navigating the corporate labyrinth, excelling by traditional standards yet feeling increasingly constrained. The pivotal moment came not from a strategic business plan, but from a bold decision that would reshape my entire perspective on wealth creation.
                 </p>
                 <p className="text-gray-300">
-                  Taking a leap of faith, I left my corporate role the day after publishing my book. Like Cortez burning his ships to eliminate retreat, I committed fully to this new path.
+                  In a move that my colleagues deemed radical, I published my first book and immediately severed ties with my corporate position—a decision reminiscent of Cortés burning his ships upon reaching the New World. This wasn't mere impulsiveness; it was an unwavering commitment to mastery.
                 </p>
-                <p className="text-gray-300 font-semibold">
-                  And it worked brilliantly.
+                <p className="text-gray-300 font-medium">
+                  What followed wasn't just success—it was a complete paradigm shift in how digital assets could be leveraged for extraordinary results.
                 </p>
               </div>
             </div>
@@ -113,14 +113,14 @@ const StorySection: React.FC = () => {
             {/* Pattern Recognition Section */}
             <div className="space-y-8">
               <h2 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecc94b] to-white">
-                After Years In The Business...<br/>I Uncovered a Revolutionary Pattern
+                The Elite's Best-Kept Secret:<br/>A Pattern Hidden in Plain Sight
               </h2>
               <div className="prose prose-lg prose-invert">
                 <p className="text-gray-300">
-                  I discovered something extraordinary that virtually every successful digital entrepreneur was implementing—a closely guarded secret they preferred to keep to themselves.
+                  Through years of meticulous analysis and direct engagement with industry leaders, I uncovered a pattern so fundamental yet so powerful that it challenged everything I thought I knew about digital entrepreneurship.
                 </p>
                 <p className="text-gray-300">
-                  Their strategy centered around one foundational product, masterfully repackaged and refined. Just one. That's all they needed. And that's all YOU need to create a prosperous living from your expertise.
+                  The revelation was striking: the most successful digital entrepreneurs weren't building complex empires—they were mastering the art of singular focus. One exceptional product, strategically positioned and expertly leveraged, was consistently outperforming entire portfolios of mediocre offerings.
                 </p>
               </div>
             </div>
@@ -128,14 +128,14 @@ const StorySection: React.FC = () => {
             {/* Results Section */}
             <div className="space-y-8">
               <h2 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecc94b] to-white">
-                I Started To Apply This "One Book" Approach And Doubled My Business In 7 Months
+                From Theory to Transformation:<br/>The 7-Month Revenue Revolution
               </h2>
               <div className="prose prose-lg prose-invert">
                 <p className="text-gray-300">
-                  The results were extraordinary. Sales began steadily, then accelerated dramatically. Within just seven months, my business had doubled in size.
+                  Implementing this refined approach produced results that exceeded even my most optimistic projections. What began as a steady growth curve transformed into an exponential trajectory, culminating in a 100% revenue increase within just seven months.
                 </p>
                 <p className="text-gray-300">
-                  This success demanded to be shared. So I developed a comprehensive blueprint—one that's now helped thousands achieve similar results, without the complexity of building massive email lists or chasing traffic.
+                  This wasn't just a personal victory—it became the foundation of a proven system that has now empowered thousands to achieve similar transformations. No complex funnels. No endless content creation. Just one perfectly executed strategy that consistently delivers extraordinary results.
                 </p>
               </div>
             </div>

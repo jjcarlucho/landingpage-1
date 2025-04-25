@@ -15,8 +15,8 @@ const App: React.FC = () => {
     <div className="w-full bg-gradient-to-b from-[#1a1a1a] via-[#2c2c2c] to-[#1a1a1a] min-h-screen">
       <Hero />
       <VSL />
-      <ProductImages />
       <StorySection />
+      <ProductImages />
       <Benefits />
       <Decision />
       <Pricing />
