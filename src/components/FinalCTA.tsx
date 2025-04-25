@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Sparkles, Star, Shield, Clock } from 'lucide-react';
 
 const floatingTestimonials = [
@@ -10,6 +10,7 @@ const floatingTestimonials = [
 
 const FinalCTA: React.FC = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [showConfetti, setShowConfetti] = useState(false);
   const { scrollYProgress } = useScroll();
   
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
@@ -35,24 +36,59 @@ const FinalCTA: React.FC = () => {
 
       {/* Floating Testimonials */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          key={activeTestimonial}
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.5 }}
-          transition={{ duration: 0.5 }}
-          className="absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2"
-        >
-          <div className="bg-white/5 backdrop-blur-lg rounded-lg p-4 shadow-lg border border-white/10">
-            <p className="text-white/90 text-sm">
-              {floatingTestimonials[activeTestimonial].text}
-            </p>
-            <p className="text-[#ecc94b] text-xs mt-2">
-              - {floatingTestimonials[activeTestimonial].author}
-            </p>
-          </div>
-        </motion.div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTestimonial}
+            initial={{ opacity: 0, y: 20, x: '-50%' }}
+            animate={{ opacity: 1, y: 0, x: '-50%' }}
+            exit={{ opacity: 0, y: -20, x: '-50%' }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="absolute top-1/4 left-1/4"
+          >
+            <div className="bg-white/5 backdrop-blur-lg rounded-lg p-4 shadow-lg border border-white/10">
+              <p className="text-white/90 text-sm">
+                {floatingTestimonials[activeTestimonial].text}
+              </p>
+              <p className="text-[#ecc94b] text-xs mt-2">
+                - {floatingTestimonials[activeTestimonial].author}
+              </p>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
+
+      {/* Confetti Effect */}
+      {showConfetti && (
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(50)].map((_, i) => (
+            <motion.div
+              key={i}
+              initial={{
+                opacity: 1,
+                scale: 0,
+                x: Math.random() * window.innerWidth,
+                y: window.innerHeight
+              }}
+              animate={{
+                opacity: 0,
+                scale: 1,
+                x: Math.random() * window.innerWidth,
+                y: -100,
+                rotate: Math.random() * 360
+              }}
+              transition={{
+                duration: 1.5,
+                delay: Math.random() * 0.2,
+                ease: "easeOut"
+              }}
+              className="absolute w-2 h-2 rounded-full"
+              style={{
+                background: `hsl(${Math.random() * 360}, 70%, 50%)`
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       <div className="container mx-auto px-4 relative">
         <motion.div
@@ -128,9 +164,22 @@ const FinalCTA: React.FC = () => {
                   <p className="text-gray-400 text-lg mb-2">Regular Price</p>
                   <p className="text-3xl text-gray-500 line-through">$1,311</p>
                   <p className="text-gray-400 text-lg mt-4 mb-2">Today's Price</p>
-                  <div className="flex items-center justify-center md:justify-start">
+                  <div className="flex items-center justify-center md:justify-start relative overflow-hidden">
                     <span className="text-6xl font-bold text-white">$</span>
-                    <span className="text-8xl font-bold bg-gradient-to-r from-amber-200 to-[#ecc94b] bg-clip-text text-transparent">11</span>
+                    <span className="text-8xl font-bold bg-gradient-to-r from-amber-200 to-[#ecc94b] bg-clip-text text-transparent relative">
+                      11
+                      <motion.div
+                        className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                        animate={{
+                          x: ["100%", "-100%"]
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          repeatDelay: 3
+                        }}
+                      />
+                    </span>
                     <span className="text-4xl font-bold text-white self-start mt-4">.11</span>
                   </div>
                 </div>
@@ -138,6 +187,8 @@ const FinalCTA: React.FC = () => {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onHoverStart={() => setShowConfetti(true)}
+                  onHoverEnd={() => setShowConfetti(false)}
                   className="inline-block"
                 >
                   <a
