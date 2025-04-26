@@ -88,14 +88,14 @@ const ProductImages: React.FC = () => {
               <div className="mt-8">
                 <div className="relative max-w-3xl mx-auto">
                   {/* Background Glow Effects */}
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ecc94b] via-[#d4af37] to-[#ecc94b] rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-all duration-500"></div>
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#1a1a1a] via-[#2c2c2c] to-[#1a1a1a] rounded-2xl opacity-90"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ecc94b] via-[#d4af37] to-[#ecc94b] rounded-3xl opacity-75 blur-lg group-hover:opacity-100 transition-all duration-500"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#1a1a1a] via-[#2c2c2c] to-[#1a1a1a] rounded-3xl opacity-90"></div>
 
                   {/* Main Content Container */}
-                  <div className="relative bg-gradient-to-br from-[#1a1a1a] to-[#2c2c2c] rounded-2xl p-6 border border-[#ecc94b]/20">
+                  <div className="relative bg-gradient-to-br from-[#1a1a1a] to-[#2c2c2c] rounded-3xl p-8 border border-[#ecc94b]/30 shadow-2xl backdrop-blur-xl">
                     {/* Top Section - Value Badge */}
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <div className="bg-gradient-to-r from-[#ecc94b] to-[#d4af37] p-[1px] rounded-full">
+                      <div className="bg-gradient-to-r from-[#ecc94b] to-[#d4af37] p-[1px] rounded-full shadow-lg">
                         <div className="px-6 py-1.5 rounded-full bg-[#1a1a1a]">
                           <span className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecc94b] to-[#d4af37]">
                             Exclusive Offer
@@ -123,8 +123,8 @@ const ProductImages: React.FC = () => {
                       <div className="text-center md:text-right">
                         <div className="inline-block">
                           <div className="relative">
-                            <div className="absolute -inset-1 bg-gradient-to-r from-[#ecc94b] to-[#d4af37] blur opacity-70"></div>
-                            <div className="relative bg-[#1a1a1a] px-4 py-2 rounded-lg border border-[#ecc94b]/50">
+                            <div className="absolute -inset-1 bg-gradient-to-r from-[#ecc94b] to-[#d4af37] blur opacity-70 rounded-lg"></div>
+                            <div className="relative bg-[#1a1a1a] px-4 py-2 rounded-lg border border-[#ecc94b]/50 shadow-lg">
                               <span className="text-3xl font-bold text-[#ecc94b]">$11.11</span>
                             </div>
                           </div>
@@ -135,32 +135,30 @@ const ProductImages: React.FC = () => {
                     {/* Bottom CTA Button */}
                     <div className="mt-6">
                       <a href="https://pay.hotmart.com/P99406062G" className="group block">
-                        <div className="bg-gradient-to-r from-[#ecc94b] to-[#d4af37] p-[1px] rounded-full">
-                          <div className="px-6 py-3 rounded-full bg-[#1a1a1a] hover:bg-opacity-80 transition-all duration-300">
-                            <div className="flex items-center justify-center gap-2">
-                              <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecc94b] to-[#d4af37]">
-                                Get Instant Access
-                              </span>
-                              <svg 
-                                className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" 
-                                fill="none" 
-                                stroke="url(#gradient)" 
-                                viewBox="0 0 24 24"
-                              >
-                                <defs>
-                                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stopColor="#ecc94b" />
-                                    <stop offset="100%" stopColor="#d4af37" />
-                                  </linearGradient>
-                                </defs>
-                                <path 
-                                  strokeLinecap="round" 
-                                  strokeLinejoin="round" 
-                                  strokeWidth={2} 
-                                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                                />
-                              </svg>
-                            </div>
+                        <div className="bg-gradient-to-r from-[#ecc94b] to-[#d4af37] p-[1px] rounded-full shadow-lg">
+                          <div className="px-6 py-3 rounded-full bg-[#1a1a1a] hover:bg-opacity-80 transition-all duration-300 flex items-center justify-center gap-2">
+                            <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecc94b] to-[#d4af37]">
+                              Get Instant Access
+                            </span>
+                            <svg 
+                              className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300 text-[#ecc94b]"
+                              fill="none" 
+                              stroke="url(#gradient)" 
+                              viewBox="0 0 24 24"
+                            >
+                              <defs>
+                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                  <stop offset="0%" stopColor="#ecc94b" />
+                                  <stop offset="100%" stopColor="#d4af37" />
+                                </linearGradient>
+                              </defs>
+                              <path 
+                                strokeLinecap="round" 
+                                strokeLinejoin="round" 
+                                strokeWidth={2} 
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"
+                              />
+                            </svg>
                           </div>
                         </div>
                       </a>

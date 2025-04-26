@@ -90,7 +90,7 @@ const Benefits: React.FC = () => {
             <motion.div
               key={benefit.title}
               variants={item}
-              className={`bg-gradient-to-br ${benefit.color} backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300`}
+              className={`bg-gradient-to-br ${benefit.color} backdrop-blur-xl rounded-3xl p-8 border border-[#ecc94b]/20 shadow-2xl hover:shadow-[0_0_40px_10px_rgba(236,201,75,0.15)] hover:border-[#ecc94b]/40 transition-all duration-300`}
             >
               <div className="text-[#ecc94b] mb-6">
                 <benefit.icon className="h-12 w-12" />
