@@ -35,49 +35,41 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&family=EB+Garamond:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <style>
+      :root {
+        --gold: #ecc94b;
+      }
       body {
         font-family: 'Inter', sans-serif;
         background-color: #2c3330;
         color: #ffffff;
       }
-
       h1,
       h2,
       h3,
       h4,
       h5,
       h6 {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Inter', sans-serif;
       }
-
-      .serif-text {
-        font-family: 'EB Garamond', serif;
-      }
-
       .text-gold {
-        color: #ecc94b;
+        color: var(--gold);
       }
-
       .bg-gold {
-        background-color: #ecc94b;
+        background-color: var(--gold);
       }
-
       .border-gold {
-        border-color: #ecc94b;
+        border-color: var(--gold);
       }
-
       .text-shadow-gold {
         text-shadow: 0 0 20px rgba(236, 201, 75, 0.5);
       }
-
       .animate-fade-in-up {
         animation: fadeInUp 0.8s ease-out forwards;
       }
-
       @keyframes fadeInUp {
         from {
           opacity: 0;
@@ -88,29 +80,23 @@
           transform: translateY(0);
         }
       }
-
       .backdrop-blur-sm {
         backdrop-filter: blur(4px);
       }
-
       .backdrop-blur-md {
         backdrop-filter: blur(8px);
       }
-
       /* Custom scrollbar */
       ::-webkit-scrollbar {
         width: 10px;
       }
-
       ::-webkit-scrollbar-track {
         background: #1c2320;
       }
-
       ::-webkit-scrollbar-thumb {
         background: #ecc94b;
         border-radius: 5px;
       }
-
       ::-webkit-scrollbar-thumb:hover {
         background: #d4af37;
       }
