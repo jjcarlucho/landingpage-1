@@ -65,32 +65,40 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoSrc = '/VSL.mp4' }) => {
         style={{ pointerEvents: 'none' }}
       />
 
-      {/* Overlay personalizado solo antes del primer play */}
+      {/* Overlay premium solo antes del primer play */}
       {!hasInteracted && (
         <div
-          className="absolute inset-0 flex items-center justify-center z-10"
-          style={{ background: 'rgba(0,0,0,0.0)' }}
+          className="absolute inset-0 flex items-center justify-center z-10 animate-fadein"
           onClick={handleOverlayClick}
         >
           <div
-            className="flex flex-col items-center justify-center px-8 py-8 rounded-xl shadow-lg"
-            style={{ background: 'rgba(236,201,75,0.95)' }} // dorado de la página
+            className="flex flex-col items-center justify-center px-10 py-10 rounded-3xl shadow-2xl backdrop-blur-xl"
+            style={{ background: 'rgba(236,201,75,0.70)', boxShadow: '0 8px 32px 0 rgba(0,0,0,0.25)' }}
           >
-            <span className="text-lg font-bold text-white mb-2" style={{textShadow:'0 1px 2px #0008'}}>The Video Is Playing!</span>
-            {/* SVG animado volumen muteado */}
+            {/* SVG animado volumen muteado premium */}
             <svg
-              className="w-20 h-20 mb-2 animate-wiggle"
+              className="w-24 h-24 mb-6 animate-wiggle"
               viewBox="0 0 64 64"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <g>
-                <rect x="16" y="24" width="12" height="16" rx="2" fill="#fff" />
+                <rect x="16" y="24" width="12" height="16" rx="4" fill="#fff" />
                 <polygon points="28,24 44,12 44,52 28,40" fill="#fff" />
-                <line x1="18" y1="18" x2="46" y2="46" stroke="#b8860b" strokeWidth="5" strokeLinecap="round" />
+                <line x1="18" y1="18" x2="46" y2="46" stroke="#b8860b" strokeWidth="6" strokeLinecap="round" />
               </g>
             </svg>
-            <span className="text-lg font-semibold text-white" style={{textShadow:'0 1px 2px #0008'}}>Click Here For Sound</span>
+            <span
+              className="text-2xl font-bold text-white tracking-wide text-center"
+              style={{
+                fontFamily: 'Inter, sans-serif',
+                textShadow: '0 2px 8px #0007',
+                letterSpacing: '0.04em',
+                lineHeight: 1.2,
+              }}
+            >
+              Click to enable sound
+            </span>
           </div>
           <style>{`
             @keyframes wiggle {
@@ -101,6 +109,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoSrc = '/VSL.mp4' }) => {
               80% { transform: rotate(-4deg); }
             }
             .animate-wiggle { animation: wiggle 1.2s infinite; }
+            @keyframes fadein {
+              from { opacity: 0; transform: scale(0.96); }
+              to { opacity: 1; transform: scale(1); }
+            }
+            .animate-fadein { animation: fadein 0.7s cubic-bezier(.4,0,.2,1) both; }
           `}</style>
         </div>
       )}
