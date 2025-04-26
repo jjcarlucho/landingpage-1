@@ -51,7 +51,9 @@ const App: React.FC = () => {
         <LazyComponent>
           <UltimateCTA />
         </LazyComponent>
-        <StickyCTA />
+        <LazyComponent>
+          <StickyCTA />
+        </LazyComponent>
       </div>
     </>
   );
