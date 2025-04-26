@@ -16,23 +16,11 @@ const ProductImages: React.FC = () => {
             <div className="relative">
               <div className="relative bg-gradient-to-br from-[#2c2c2c] to-[#1a1a1a] p-8 rounded-lg shadow-2xl">
                 <div className="relative aspect-[3/4] rounded-lg shadow-xl overflow-hidden">
-                  <picture>
-                    <source srcSet="/book-cover.webp" type="image/webp" />
-                    <source srcSet="/book-cover.jpg" type="image/jpeg" />
-                    <img
-                      src="/book-cover.jpg"
-                      alt="The GameChanger: Turn Pages into Profit"
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      onLoad={(e) => {
-                        const img = e.target as HTMLImageElement;
-                        if (img.complete) {
-                          img.classList.add('loaded');
-                        }
-                      }}
-                    />
-                  </picture>
+                  <img
+                    src="/book-cover.jpg"
+                    alt="The GameChanger: Turn Pages into Profit"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </div>
@@ -43,7 +31,7 @@ const ProductImages: React.FC = () => {
                 Unlock These Exclusive Bonuses
               </h2>
 
-              {/* Bonus 1 - Your Wish Is Your Command */}
+              {/* Bonus 1 - Your Wish Is Your Command ($997) */}
               <div className="flex items-center gap-6 bg-[#1a1a1a] p-6 rounded-xl hover:bg-[#1a1a1a]/90 transition-all duration-300">
                 <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
                   <img
@@ -61,7 +49,7 @@ const ProductImages: React.FC = () => {
                 </div>
               </div>
 
-              {/* Bonus 2 - TFT Course */}
+              {/* Bonus 2 - TFT Course ($297) */}
               <div className="flex items-center gap-6 bg-[#1a1a1a] p-6 rounded-xl hover:bg-[#1a1a1a]/90 transition-all duration-300">
                 <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
                   <img
@@ -79,11 +67,11 @@ const ProductImages: React.FC = () => {
                 </div>
               </div>
 
-              {/* Bonus 3 - AI Tools Checklist */}
+              {/* Bonus 3 - AI Tools Checklist ($17) */}
               <div className="flex items-center gap-6 bg-[#1a1a1a] p-6 rounded-xl hover:bg-[#1a1a1a]/90 transition-all duration-300">
                 <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
                   <img
-                    src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=200&h=200&q=80"
+                    src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=200&h=200&q=80"
                     alt="AI Tools Checklist"
                     className="w-full h-full object-cover"
                   />
