@@ -1,86 +1,68 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 interface VideoPlayerProps {
-  videoId: string;
-  videoHash?: string;
+  videoSrc?: string; // Ahora opcional, por defecto VSL.mp4
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
+const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoSrc = '/VSL.mp4' }) => {
   const [hasInteracted, setHasInteracted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-  const playerRef = useRef<HTMLIFrameElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  // URL para el video de fondo (muted, loop)
-  const bgVideoSrc = `https://player.vimeo.com/video/${videoId}${
-    videoHash ? `?h=${videoHash}&` : '?'
-  }background=1&loop=1&autopause=0&muted=1&controls=0&playsinline=1`;
-
-  // URL para el video principal (sin autoplay para evitar problemas)
-  const mainVideoSrc = `https://player.vimeo.com/video/${videoId}${
-    videoHash ? `?h=${videoHash}&` : '?'
-  }muted=0&controls=0&loop=0&autopause=0&api=1&transparent=1`;
-
-  useEffect(() => {
-    if (hasInteracted && playerRef.current) {
-      // @ts-ignore
-      const player = new Vimeo.Player(playerRef.current);
-      player.on('play', () => setIsPlaying(true));
-      player.on('pause', () => setIsPlaying(false));
-      
-      // Reproducir el video manualmente después de la interacción
-      player.play().then(() => {
-        setIsPlaying(true);
-      }).catch((error: any) => {
-        console.error('Error playing video:', error);
-      });
-    }
-  }, [hasInteracted]);
-
-  const handleClick = () => {
+  // Cuando el usuario hace click en el botón de play
+  const handlePlayClick = () => {
     if (!hasInteracted) {
       setHasInteracted(true);
-    } else {
-      // @ts-ignore
-      const player = new Vimeo.Player(playerRef.current);
-      if (isPlaying) {
-        player.pause();
-      } else {
-        player.play();
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.muted = false;
+        videoRef.current.play();
+        setIsPlaying(true);
       }
+    } else {
+      if (videoRef.current) {
+        if (isPlaying) {
+          videoRef.current.pause();
+          setIsPlaying(false);
+        } else {
+          videoRef.current.play();
+          setIsPlaying(true);
+        }
+      }
+    }
+  };
+
+  // Cuando termina el video
+  const handleEnded = () => {
+    setIsPlaying(false);
+    setHasInteracted(false);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.muted = true;
+      videoRef.current.play();
     }
   };
 
   return (
     <div
       className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-[0_0_50px_rgba(236,201,75,0.1)] cursor-pointer group"
-      onClick={handleClick}
+      onClick={handlePlayClick}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      {!hasInteracted ? (
-        // Video de fondo sin sonido
-        <iframe
-          src={bgVideoSrc}
-          className="absolute top-0 left-0 w-full h-full"
-          frameBorder="0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-      ) : (
-        // Video principal con sonido
-        <>
-          <iframe
-            ref={playerRef}
-            src={mainVideoSrc}
-            className="absolute top-0 left-0 w-full h-full"
-            frameBorder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-          <script src="https://player.vimeo.com/api/player.js"></script>
-        </>
-      )}
+      {/* Video HTML5 */}
+      <video
+        ref={videoRef}
+        src={videoSrc}
+        className="absolute top-0 left-0 w-full h-full object-cover"
+        muted={!hasInteracted}
+        autoPlay
+        loop={!hasInteracted}
+        playsInline
+        onEnded={handleEnded}
+        style={{ pointerEvents: 'none' }}
+      />
 
       {/* Overlay del botón de play inicial */}
       {!hasInteracted && (
@@ -93,17 +75,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
             <div className="relative w-32 h-32 rounded-full bg-[#ecc94b]/30 border-2 border-[#ecc94b] flex items-center justify-center transform hover:scale-105 transition-transform">
               <span className="text-6xl text-[#ecc94b] drop-shadow-lg">▶</span>
             </div>
-          </div>
-        </div>
-      )}
-
-      {/* Controles de play/pause que aparecen al hacer hover */}
-      {hasInteracted && isHovering && (
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-          <div className="pointer-events-auto w-20 h-20 rounded-full bg-[#ecc94b]/20 border border-[#ecc94b]/30 flex items-center justify-center transform hover:scale-110 transition-transform">
-            <span className="text-4xl text-[#ecc94b] drop-shadow-lg">
-              {isPlaying ? '❚❚' : '▶'}
-            </span>
           </div>
         </div>
       )}
