@@ -133,19 +133,19 @@ const Story: React.FC = () => {
               </p>
 
               {/* Testimonials */}
-              <div className="bg-gray-800/50 p-8 rounded-lg mt-8 space-y-4 backdrop-blur-sm border border-gray-700/50">
-                <blockquote className="italic text-gray-300">
+              <div className="bg-gray-800/50 p-8 rounded-3xl mt-8 space-y-4 backdrop-blur-xl border-2 border-[#ecc94b]/20 shadow-2xl">
+                <blockquote className="italic text-gray-300 font-sans">
                   "This has to be the easiest way to make more from a book I've
                   ever seen." - Emily Smith
                 </blockquote>
 
-                <blockquote className="italic text-gray-300">
+                <blockquote className="italic text-gray-300 font-sans">
                   "Jonathan's approach to digital products is the best thing to
                   happen to entrepreneurship since the internet was invented."
                   -- Carlos Hernandez
                 </blockquote>
 
-                <blockquote className="italic text-gray-300">
+                <blockquote className="italic text-gray-300 font-sans">
                   "The difference in my sales is over 60% greater...and my
                   client base matches. So my income has increased by nearly that
                   much as well!" -- Smith Hernandez
@@ -156,17 +156,17 @@ const Story: React.FC = () => {
 
           {/* Final Section */}
           <div className="mt-16 text-center">
-            <h3 className="text-3xl font-bold mb-8 text-white">
+            <h3 className="text-3xl font-bold mb-8 text-white font-sans">
               More Money With Each Book You Write
             </h3>
 
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-xl text-gray-300 mb-8 font-sans">
               I call this THE BOOK...and here's why:
             </p>
 
             <a
               href="#offer"
-              className="inline-flex items-center bg-gradient-to-r from-[#ecc94b] to-[#d4af37] text-black font-bold py-4 px-8 rounded-full text-xl hover:from-[#f0d75e] hover:to-[#ecc94b] transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-[#ecc94b]/25"
+              className="inline-flex items-center bg-gradient-to-r from-[#ecc94b] to-[#d4af37] text-black font-bold py-5 px-10 rounded-full text-xl hover:from-[#f0d75e] hover:to-[#ecc94b] transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-[0_0_30px_10px_rgba(236,201,75,0.4)] border-2 border-[#ecc94b]/30 focus:ring-4 focus:ring-[#ecc94b]/50 group"
             >
               See How It Works
             </a>
