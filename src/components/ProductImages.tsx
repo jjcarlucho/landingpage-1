@@ -49,24 +49,6 @@ const ProductImages: React.FC = () => {
                 </div>
               </div>
 
-              {/* AI Tools Checklist ($17) */}
-              <div className="flex items-center gap-6 bg-[#1a1a1a] p-6 rounded-xl hover:bg-[#1a1a1a]/90 transition-all duration-300">
-                <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
-                  <img
-                    src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=200&h=200&q=80"
-                    alt="AI Tools Checklist"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-1">
-                    AI Tools Checklist
-                  </h3>
-                  <p className="text-gray-400 mb-1">The ultimate resource library</p>
-                  <p className="text-gray-300 font-semibold">Value: $17</p>
-                </div>
-              </div>
-
               {/* Your Wish Is Your Command ($997) */}
               <div className="flex items-center gap-6 bg-[#1a1a1a] p-6 rounded-xl hover:bg-[#1a1a1a]/90 transition-all duration-300">
                 <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
@@ -82,6 +64,24 @@ const ProductImages: React.FC = () => {
                   </h3>
                   <p className="text-gray-400 mb-1">Legendary manifestation audios</p>
                   <p className="text-gray-300 font-semibold">Value: $997</p>
+                </div>
+              </div>
+
+              {/* AI Tools Checklist ($17) */}
+              <div className="flex items-center gap-6 bg-[#1a1a1a] p-6 rounded-xl hover:bg-[#1a1a1a]/90 transition-all duration-300">
+                <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                  <img
+                    src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=200&h=200&q=80"
+                    alt="AI Tools Checklist"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-1">
+                    AI Tools Checklist
+                  </h3>
+                  <p className="text-gray-400 mb-1">The ultimate resource library</p>
+                  <p className="text-gray-300 font-semibold">Value: $17</p>
                 </div>
               </div>
 
