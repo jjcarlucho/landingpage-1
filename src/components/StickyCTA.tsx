@@ -10,7 +10,7 @@ const StickyCTA = () => {
             <Sparkles className="w-5 h-5 text-black" />
             <h3 className="text-xl font-bold">⚠️ LAST CHANCE! ⚠️</h3>
           </div>
-          <p className="text-lg font-semibold">Premium Edition COMPLETELY FREE + $1300 in Bonuses</p>
+          <p className="text-lg font-semibold">Premium Edition COMPLETELY FREE + $1,294 in Bonuses</p>
         </div>
         <button className="bg-black text-white font-bold py-3 px-8 rounded-lg hover:bg-gray-800 transition duration-300 transform hover:scale-105 shadow-lg border-2 border-black hover:border-yellow-400">
           GET FREE ACCESS NOW!

@@ -60,7 +60,7 @@ const Pricing = () => {
 
             <div className="mt-8 bg-black bg-opacity-40 p-6 rounded-lg border border-yellow-500">
               <h3 className="text-2xl font-bold text-yellow-400 mb-4">✨ Bono Exclusivo ✨</h3>
-              <p className="text-xl text-white mb-2">$1300 en Bonos Premium</p>
+              <p className="text-xl text-white mb-2">$1,294 en Bonos Premium</p>
               <p className="text-gray-300">Incluye acceso a recursos exclusivos y mentoría personalizada</p>
             </div>
 
@@ -75,7 +75,7 @@ const Pricing = () => {
                 <svg className="w-6 h-6 text-yellow-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                 </svg>
-                $1300 en bonos exclusivos para tu transformación
+                $1,294 en bonos exclusivos para tu transformación
               </li>
               <li className="flex items-center text-gray-300">
                 <svg className="w-6 h-6 text-yellow-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

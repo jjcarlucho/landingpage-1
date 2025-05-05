@@ -32,7 +32,7 @@ const ExclusiveBonuses = () => {
           <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-8 border border-yellow-500 mb-8">
             <div className="text-center mb-8">
               <div className="inline-block bg-yellow-500 text-black px-4 py-1 rounded-full text-sm font-bold mb-4">
-                TOTAL VALUE: ${totalValue}
+                TOTAL VALUE: $1,294
               </div>
               <p className="text-2xl text-white font-bold">
                 ALL BONUSES INCLUDED FREE!
