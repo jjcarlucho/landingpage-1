@@ -29,6 +29,7 @@ const App: React.FC = () => {
 
   return (
     <>
+      <div style={{position: 'fixed', top: 0, left: 0, width: '100%', zIndex: 9999, background: 'red', color: 'white', textAlign: 'center', fontWeight: 'bold', padding: '8px'}}>DEBUG: App is rendering</div>
       <AnimatePresence>
         {isLoading && <PageLoader />}
       </AnimatePresence>
