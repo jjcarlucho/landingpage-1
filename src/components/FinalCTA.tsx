@@ -132,7 +132,7 @@ const FinalCTA: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Exclusive Bonuses Included</h3>
-                    <p className="text-gray-200 text-sm md:text-base">Get instant access to premium bonuses worth over $1,311.</p>
+                    <p className="text-gray-200 text-sm md:text-base">Get instant access to premium bonuses worth $1,294.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3 md:space-x-4">
@@ -141,7 +141,7 @@ const FinalCTA: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Limited Time Offer</h3>
-                    <p className="text-gray-200 text-sm md:text-base">Special pricing available only during this launch period.</p>
+                    <p className="text-gray-200 text-sm md:text-base">Claim your FREE access before it's gone.</p>
                   </div>
                 </div>
               </div>
@@ -150,25 +150,11 @@ const FinalCTA: React.FC = () => {
                 <div className="mb-6 md:mb-8">
                   <p className="text-gray-300 text-base md:text-lg mb-1 md:mb-2">Regular Price</p>
                   <p className="text-2xl md:text-3xl text-gray-400 line-through">$1,311</p>
-                  <p className="text-gray-300 text-base md:text-lg mt-2 md:mt-4 mb-1 md:mb-2">Today's Price</p>
+                  <p className="text-gray-300 text-base md:text-lg mt-2 md:mt-4 mb-1 md:mb-2 font-bold">Today's Price</p>
                   <div className="flex items-center justify-center md:justify-start relative overflow-hidden">
-                    <span className="text-4xl md:text-6xl font-bold text-white">$</span>
-                    <span className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-[#ecc94b] to-amber-200 bg-clip-text text-transparent relative">
-                      11
-                      <motion.div
-                        className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                        animate={{
-                          x: ["100%", "-100%"]
-                        }}
-                        transition={{
-                          duration: 1.5,
-                          repeat: Infinity,
-                          repeatDelay: 3
-                        }}
-                      />
-                    </span>
-                    <span className="text-2xl md:text-4xl font-bold text-white self-start mt-2 md:mt-4">.11</span>
+                    <span className="text-6xl md:text-8xl font-bold text-yellow-400">FREE</span>
                   </div>
+                  <p className="text-green-400 text-base md:text-lg mt-2 font-semibold">No credit card required</p>
                 </div>
 
                 <motion.div
@@ -179,12 +165,12 @@ const FinalCTA: React.FC = () => {
                   className="inline-block"
                 >
                   <a
-                    href="https://pay.hotmart.com/P99406062G"
+                    href="#register"
                     className="group relative inline-flex items-center justify-center px-8 md:px-12 py-4 md:py-6 text-xl md:text-2xl font-bold text-black bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 rounded-full overflow-hidden shadow-[0_0_30px_rgba(236,201,75,0.2)] md:shadow-[0_0_50px_rgba(236,201,75,0.3)] hover:shadow-[0_0_60px_rgba(236,201,75,0.3)] md:hover:shadow-[0_0_100px_rgba(236,201,75,0.5)] transition-all duration-300"
                   >
                     <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                     <span className="relative flex items-center">
-                      Get Instant Access
+                      Get Free Access Now!
                       <ArrowRight className="ml-2 w-5 md:w-6 h-5 md:h-6 transform group-hover:translate-x-1 transition-transform duration-300" />
                     </span>
                   </a>
@@ -194,8 +180,8 @@ const FinalCTA: React.FC = () => {
           </motion.div>
 
           <div className="text-center mt-4 md:mt-8">
-            <p className="text-gray-300 text-xs md:text-base">
-              * One-time payment. No hidden fees. Instant access to all materials.
+            <p className="text-green-400 text-xs md:text-base font-semibold">
+              100% FREE. No payment, no hidden fees. Instant access to all materials.
             </p>
           </div>
         </motion.div>
