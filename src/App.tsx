@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import LazyComponent from './components/LazyComponent';
 import PageLoader from './components/PageLoader';
 import VSL from './components/VSL';
+import { Routes, Route } from 'react-router-dom';
 
 // Lazy load components
 const Hero = lazy(() => import('./components/Hero'));
@@ -12,6 +13,7 @@ const Benefits = lazy(() => import('./components/Benefits'));
 const Decision = lazy(() => import('./components/Decision'));
 const UltimateCTA = lazy(() => import('./components/FinalCTA'));
 const StickyCTA = lazy(() => import('./components/StickyCTA'));
+const AccessPage = lazy(() => import('./components/AccessPage'));
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -55,6 +57,10 @@ const App: React.FC = () => {
           <StickyCTA />
         </LazyComponent>
       </div>
+
+      <Routes>
+        <Route path="/access" element={<AccessPage />} />
+      </Routes>
     </>
   );
 };
