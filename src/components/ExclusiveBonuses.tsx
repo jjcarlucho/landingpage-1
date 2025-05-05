@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const ExclusiveBonuses: React.FC = () => {
+const ExclusiveBonuses = () => {
   const bonuses = [
     {
       id: 1,
@@ -29,81 +29,55 @@ const ExclusiveBonuses: React.FC = () => {
   const totalValue = bonuses.reduce((acc, bonus) => acc + bonus.value, 0);
 
   return (
-    <section className="py-20 px-4 md:px-8 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black opacity-95"></div>
-      
-      <div className="relative max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="inline-block"
-          >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-200 via-yellow-300 to-amber-200 bg-clip-text text-transparent">
-              Unlock These Exclusive Bonuses
-            </h2>
-            <p className="text-2xl text-amber-100/80 max-w-4xl mx-auto leading-relaxed">
-              When you invest in yourself today, you'll receive these extraordinary bonuses crafted to catapult your success to unprecedented heights
-            </p>
-          </motion.div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          {bonuses.map((bonus, index) => (
-            <motion.div
-              key={bonus.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl p-8 shadow-[0_0_30px_rgba(251,191,36,0.1)] hover:shadow-[0_0_40px_rgba(251,191,36,0.2)] transition-all duration-300"
-            >
-              <div className="aspect-video relative mb-8 rounded-xl overflow-hidden">
-                <img
-                  src={bonus.image}
-                  alt={bonus.title}
-                  className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-400 to-yellow-500 px-6 py-3 rounded-full shadow-[0_0_20px_rgba(251,191,36,0.3)]">
-                  <span className="text-black font-bold text-lg">${bonus.value}</span>
-                  <span className="text-black font-medium"> Value</span>
-                </div>
+    <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-white mb-8">
+            🎁 Exclusive FREE Bonuses 🎁
+          </h2>
+          
+          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-8 border border-yellow-500 mb-8">
+            <div className="text-center mb-8">
+              <div className="inline-block bg-yellow-500 text-black px-4 py-1 rounded-full text-sm font-bold mb-4">
+                TOTAL VALUE: $1300
               </div>
-              <h3 className="text-3xl font-bold text-amber-200 mb-4">{bonus.title}</h3>
-              <p className="text-lg text-gray-300 leading-relaxed whitespace-pre-line">{bonus.description}</p>
-            </motion.div>
-          ))}
-        </div>
+              <p className="text-2xl text-white font-bold">
+                ALL BONUSES INCLUDED FREE!
+              </p>
+            </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <div className="inline-block bg-gradient-to-br from-gray-800/30 to-gray-900/30 backdrop-blur-md rounded-3xl p-12 shadow-[0_0_50px_rgba(251,191,36,0.15)]">
-            <h3 className="text-4xl md:text-5xl font-bold mb-6">
-              Total Bonus Value: {" "}
-              <span className="bg-gradient-to-r from-amber-200 via-yellow-300 to-amber-200 bg-clip-text text-transparent">
-                ${totalValue.toLocaleString()}
-              </span>
-            </h3>
-            <p className="text-2xl text-amber-100/80 mb-8 max-w-3xl mx-auto">
-              Don't miss out on this extraordinary opportunity! Get instant access to all these life-changing bonuses when you take action today.
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 text-black text-2xl font-bold py-6 px-12 rounded-full shadow-[0_0_30px_rgba(251,191,36,0.3)] hover:shadow-[0_0_50px_rgba(251,191,36,0.5)] transition-all duration-300"
-              onClick={() => window.location.href = 'https://pay.hotmart.com/P99406062G'}
-            >
-              Claim Your Exclusive Bonuses Now - Only $11.11
-            </motion.button>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-black bg-opacity-40 p-6 rounded-lg border border-yellow-500">
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">✨ Bonus 1 ✨</h3>
+                <p className="text-white mb-2">Premium Templates</p>
+                <p className="text-gray-300">Value: $297</p>
+                <ul className="text-gray-300 mt-4 space-y-2">
+                  <li>✓ High-converting templates</li>
+                  <li>✓ Proven sales scripts</li>
+                  <li>✓ Marketing strategies</li>
+                </ul>
+              </div>
+              
+              <div className="bg-black bg-opacity-40 p-6 rounded-lg border border-yellow-500">
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">✨ Bonus 2 ✨</h3>
+                <p className="text-white mb-2">VIP Community</p>
+                <p className="text-gray-300">Value: $497</p>
+                <ul className="text-gray-300 mt-4 space-y-2">
+                  <li>✓ Private group access</li>
+                  <li>✓ Expert networking</li>
+                  <li>✓ Personalized support</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-8">
+              <button className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-black font-bold rounded-lg py-4 px-4 hover:from-yellow-400 hover:to-yellow-500 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                GET FREE BONUSES NOW!
+              </button>
+              <p className="text-sm text-gray-400 mt-4">🔥 Limited time offer</p>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
