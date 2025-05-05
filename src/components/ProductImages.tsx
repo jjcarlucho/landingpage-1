@@ -1,9 +1,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-// Importando la imagen usando una URL relativa
-import bookCoverImg from '@assets/book-cover.jpg';
+import { Headphones, Sparkles } from 'lucide-react';
 
 const ProductImages = () => {
+  const bonuses = [
+    {
+      icon: <Headphones className="w-8 h-8 text-amber-400" />,
+      title: 'Your Wish Is Your Command',
+      value: '$997',
+      description: 'Legendary manifestation audios for business success',
+    },
+    {
+      icon: <Sparkles className="w-8 h-8 text-amber-400" />,
+      title: 'TFT Mastery Course',
+      value: '$297',
+      description: 'Release subconscious blocks and charge premium prices',
+    },
+  ];
+
   return (
     <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
       <div className="container mx-auto px-4">
@@ -21,27 +35,18 @@ const ProductImages = () => {
                 <span className="text-6xl font-bold text-yellow-400">FREE</span>
                 <span className="text-2xl text-gray-400 ml-2 line-through">$997</span>
               </div>
-              <p className="text-gray-400 mt-2">Real Value: $1,597</p>
+              <p className="text-gray-400 mt-2">Real Value: $1,294</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-black bg-opacity-40 p-6 rounded-lg border border-yellow-500">
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">✨ Premium Content ✨</h3>
-                <ul className="text-gray-300 space-y-2">
-                  <li>✓ Complete book access</li>
-                  <li>✓ Exclusive resources</li>
-                  <li>✓ Free updates</li>
-                </ul>
-              </div>
-              
-              <div className="bg-black bg-opacity-40 p-6 rounded-lg border border-yellow-500">
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">🎁 Included Bonuses 🎁</h3>
-                <ul className="text-gray-300 space-y-2">
-                  <li>✓ $1300 in premium bonuses</li>
-                  <li>✓ VIP community access</li>
-                  <li>✓ Personalized mentorship</li>
-                </ul>
-              </div>
+              {bonuses.map((bonus, index) => (
+                <div key={index} className="bg-black bg-opacity-40 p-6 rounded-lg border border-yellow-500">
+                  <div className="mb-4">{bonus.icon}</div>
+                  <h3 className="text-xl font-bold text-yellow-400 mb-4">{bonus.title}</h3>
+                  <p className="text-amber-400 font-semibold mb-3">Value: {bonus.value}</p>
+                  <p className="text-gray-300">{bonus.description}</p>
+                </div>
+              ))}
             </div>
 
             <div className="mt-8">
