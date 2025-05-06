@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { User, onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { User, onAuthStateChanged, createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../config/firebase';
 
 interface UserData {
@@ -16,6 +16,11 @@ interface AuthContextType {
   user: User | null;
   userData: UserData | null;
   loading: boolean;
+  signIn: (email: string, password: string) => Promise<void>;
+  signOut: () => Promise<void>;
+  signUp: (email: string, password: string) => Promise<void>;
+  updateUserProfile: (user: User) => Promise<void>;
+  createAdminUser: (email: string, password: string) => Promise<User>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -46,7 +51,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, userData, loading }}>
+    <AuthContext.Provider value={{
+      user,
+      userData,
+      loading,
+      signIn,
+      signOut,
+      signUp,
+      updateUserProfile,
+      createAdminUser
+    }}>
       {children}
     </AuthContext.Provider>
   );
