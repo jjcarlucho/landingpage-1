@@ -15,11 +15,21 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase only in browser environment
-const app = typeof window !== 'undefined' ? initializeApp(firebaseConfig) : null as unknown as FirebaseApp;
-const auth = typeof window !== 'undefined' ? getAuth(app) : null as unknown as Auth;
-const db = typeof window !== 'undefined' ? getFirestore(app) : null as unknown as Firestore;
-const storage = typeof window !== 'undefined' ? getStorage(app) : null as unknown as FirebaseStorage;
-const analytics = typeof window !== 'undefined' ? getAnalytics(app) : null as unknown as Analytics;
+const app: FirebaseApp = typeof window !== 'undefined' ? initializeApp(firebaseConfig) : null as unknown as FirebaseApp;
+const auth: Auth = typeof window !== 'undefined' ? getAuth(app) : null as unknown as Auth;
+const db: Firestore = typeof window !== 'undefined' ? getFirestore(app) : null as unknown as Firestore;
+const storage: FirebaseStorage = typeof window !== 'undefined' ? getStorage(app) : null as unknown as FirebaseStorage;
+const analytics: Analytics = typeof window !== 'undefined' ? getAnalytics(app) : null as unknown as Analytics;
 
+// Export as a single object to ensure type safety
+export const firebase = {
+  app,
+  auth,
+  db,
+  storage,
+  analytics
+} as const;
+
+// Also export individual services for backward compatibility
 export { auth, db, storage, analytics };
 export default app; 

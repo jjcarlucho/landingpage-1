@@ -4,7 +4,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useAuth } from '../context/AuthContext';
 import { signOut } from 'firebase/auth';
-import { auth } from '../config/firebase';
+import { firebase } from '../config/firebase';
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard' },
@@ -27,7 +27,7 @@ export default function DashboardNav() {
 
   const handleSignOut = async () => {
     try {
-      await signOut(auth);
+      await signOut(firebase.auth);
     } catch (error) {
       console.error('Error signing out:', error);
     }

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { doc, updateDoc } from 'firebase/firestore';
-import { db } from '../config/firebase';
+import { firebase } from '../config/firebase';
 import { useAuth } from '../context/AuthContext';
 import DashboardLayout from '../components/DashboardLayout';
 import toast from 'react-hot-toast';
@@ -17,20 +17,10 @@ const profileSchema = z.object({
 type ProfileFormData = z.infer<typeof profileSchema>;
 
 export default function Profile() {
-  const { user, userData } = useAuth();
+  const { user } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ProfileFormData>({
-    resolver: zodResolver(profileSchema),
-    defaultValues: {
-      fullName: userData?.fullName || '',
-      phone: userData?.phone || '',
-      consent: userData?.consent || false,
-    },
+  const { register, handleSubmit, formState: { errors } } = useForm<ProfileFormData>({
+    resolver: zodResolver(profileSchema)
   });
 
   const onSubmit = async (data: ProfileFormData) => {
@@ -38,13 +28,12 @@ export default function Profile() {
 
     try {
       setIsLoading(true);
-      await updateDoc(doc(db, 'users', user.uid), {
+      await updateDoc(doc(firebase.db, 'users', user.uid), {
         fullName: data.fullName,
         phone: data.phone,
         consent: data.consent,
-        updatedAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       });
-
       toast.success('Perfil actualizado correctamente');
     } catch (error) {
       console.error('Error updating profile:', error);

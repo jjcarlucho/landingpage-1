@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { User, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut as firebaseSignOut } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { auth, db } from '../config/firebase';
+import { firebase } from '../config/firebase';
 
 interface UserData {
   fullName: string;
@@ -32,7 +32,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signIn = async (email: string, password: string) => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(firebase.auth, email, password);
     } catch (error) {
       throw error;
     }
@@ -40,7 +40,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signOut = async () => {
     try {
-      await firebaseSignOut(auth);
+      await firebaseSignOut(firebase.auth);
     } catch (error) {
       throw error;
     }
@@ -48,10 +48,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signUp = async (email: string, password: string) => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(firebase.auth, email, password);
       const user = userCredential.user;
       
-      await setDoc(doc(db, 'users', user.uid), {
+      await setDoc(doc(firebase.db, 'users', user.uid), {
         email: user.email,
         role: 'user',
         createdAt: new Date().toISOString(),
@@ -64,7 +64,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const updateUserProfile = async (user: User) => {
     try {
-      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      const userDoc = await getDoc(doc(firebase.db, 'users', user.uid));
       if (userDoc.exists()) {
         setUserData(userDoc.data() as UserData);
       }
@@ -75,10 +75,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const createAdminUser = async (email: string, password: string) => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(firebase.auth, email, password);
       const user = userCredential.user;
       
-      await setDoc(doc(db, 'users', user.uid), {
+      await setDoc(doc(firebase.db, 'users', user.uid), {
         email: user.email,
         role: 'admin',
         createdAt: new Date().toISOString(),
@@ -92,11 +92,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    const unsubscribe = onAuthStateChanged(firebase.auth, async (user) => {
       setUser(user);
       
       if (user) {
-        const userDoc = await getDoc(doc(db, 'users', user.uid));
+        const userDoc = await getDoc(doc(firebase.db, 'users', user.uid));
         if (userDoc.exists()) {
           setUserData(userDoc.data() as UserData);
         }

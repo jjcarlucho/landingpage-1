@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import { auth, db } from '../config/firebase';
+import { firebase } from '../config/firebase';
 import toast from 'react-hot-toast';
 
 interface RegistrationData {
@@ -23,13 +23,13 @@ export function useRegistration() {
 
       // Create user with email and password
       const userCredential = await createUserWithEmailAndPassword(
-        auth,
+        firebase.auth,
         data.email,
         tempPassword
       );
 
       // Store user data in Firestore
-      await setDoc(doc(db, 'users', userCredential.user.uid), {
+      await setDoc(doc(firebase.db, 'users', userCredential.user.uid), {
         fullName: data.fullName,
         email: data.email,
         phone: data.phone,

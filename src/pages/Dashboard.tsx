@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { db } from '../config/firebase';
+import { firebase } from '../config/firebase';
 import { useAuth } from '../context/AuthContext';
 import DashboardLayout from '../components/DashboardLayout';
 
@@ -26,36 +26,36 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUserContent = async () => {
-      if (!user) return;
-
+    const fetchData = async () => {
       try {
         // Obtener libros disponibles
-        const booksQuery = query(collection(db, 'books'));
+        const booksQuery = query(collection(firebase.db, 'books'));
         const booksSnapshot = await getDocs(booksQuery);
         const booksData = booksSnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         })) as Book[];
+
         setBooks(booksData);
 
         // Obtener bonos disponibles
-        const bonusesQuery = query(collection(db, 'bonuses'));
+        const bonusesQuery = query(collection(firebase.db, 'bonuses'));
         const bonusesSnapshot = await getDocs(bonusesQuery);
         const bonusesData = bonusesSnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         })) as Bonus[];
+
         setBonuses(bonusesData);
       } catch (error) {
-        console.error('Error fetching user content:', error);
+        console.error('Error fetching data:', error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchUserContent();
-  }, [user]);
+    fetchData();
+  }, []);
 
   if (loading) {
     return (
