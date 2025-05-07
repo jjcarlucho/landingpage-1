@@ -17,10 +17,15 @@ const profileSchema = z.object({
 type ProfileFormData = z.infer<typeof profileSchema>;
 
 export default function Profile() {
-  const { user } = useAuth();
+  const { user, userData } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm<ProfileFormData>({
-    resolver: zodResolver(profileSchema)
+    resolver: zodResolver(profileSchema),
+    defaultValues: {
+      fullName: userData?.fullName || '',
+      phone: userData?.phone || '',
+      consent: userData?.consent || false,
+    }
   });
 
   const onSubmit = async (data: ProfileFormData) => {
