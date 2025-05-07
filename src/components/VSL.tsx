@@ -28,7 +28,7 @@ const VSL: React.FC = () => {
           </div>
           
           <div className="relative z-10">
-            <VideoPlayer videoId="1078146633" videoHash="d41d8cd98f00b204e9800998ecf8427e" />
+            <VideoPlayer videoSrc="/VSL.mp4" />
           </div>
         </div>
       </div>
