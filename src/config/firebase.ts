@@ -1,6 +1,6 @@
 import { initializeApp, FirebaseApp } from 'firebase/app';
 import { getAuth, Auth, connectAuthEmulator } from 'firebase/auth';
-import { getFirestore, Firestore, connectFirestoreEmulator } from 'firebase/firestore';
+import { getFirestore, Firestore, connectFirestoreEmulator, enableIndexedDbPersistence } from 'firebase/firestore';
 import { getStorage, FirebaseStorage, connectStorageEmulator } from 'firebase/storage';
 import { getAnalytics, Analytics } from 'firebase/analytics';
 
@@ -18,7 +18,7 @@ let app: FirebaseApp;
 let auth: Auth;
 let db: Firestore;
 let storage: FirebaseStorage;
-let analytics: Analytics;
+let analytics: Analytics | undefined;
 
 try {
   // Initialize Firebase only in browser environment
@@ -43,11 +43,11 @@ try {
 
     // Enable persistence for offline support
     if (db) {
-      db.enablePersistence()
-        .catch((err) => {
-          if (err.code === 'failed-precondition') {
+      enableIndexedDbPersistence(db)
+        .catch((err: Error) => {
+          if (err.name === 'failed-precondition') {
             console.warn('Multiple tabs open, persistence can only be enabled in one tab at a time.');
-          } else if (err.code === 'unimplemented') {
+          } else if (err.name === 'unimplemented') {
             console.warn('The current browser does not support persistence.');
           }
         });
@@ -61,7 +61,7 @@ try {
     auth = {} as Auth;
     db = {} as Firestore;
     storage = {} as FirebaseStorage;
-    analytics = {} as Analytics;
+    analytics = undefined;
   }
 } catch (error) {
   console.error('Error initializing Firebase:', error);
@@ -70,7 +70,7 @@ try {
   auth = {} as Auth;
   db = {} as Firestore;
   storage = {} as FirebaseStorage;
-  analytics = {} as Analytics;
+  analytics = undefined;
 }
 
 // Export as a single object to ensure type safety
