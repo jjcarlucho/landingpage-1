@@ -14,12 +14,37 @@ const firebaseConfig = {
   measurementId: "G-BCN8EPL57B"
 };
 
-// Initialize Firebase only in browser environment
-const app: FirebaseApp = typeof window !== 'undefined' ? initializeApp(firebaseConfig) : null as unknown as FirebaseApp;
-const auth: Auth = typeof window !== 'undefined' ? getAuth(app) : null as unknown as Auth;
-const db: Firestore = typeof window !== 'undefined' ? getFirestore(app) : null as unknown as Firestore;
-const storage: FirebaseStorage = typeof window !== 'undefined' ? getStorage(app) : null as unknown as FirebaseStorage;
-const analytics: Analytics = typeof window !== 'undefined' ? getAnalytics(app) : null as unknown as Analytics;
+let app: FirebaseApp;
+let auth: Auth;
+let db: Firestore;
+let storage: FirebaseStorage;
+let analytics: Analytics;
+
+try {
+  // Initialize Firebase only in browser environment
+  if (typeof window !== 'undefined') {
+    app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    db = getFirestore(app);
+    storage = getStorage(app);
+    analytics = getAnalytics(app);
+  } else {
+    // Create dummy instances for server-side rendering
+    app = {} as FirebaseApp;
+    auth = {} as Auth;
+    db = {} as Firestore;
+    storage = {} as FirebaseStorage;
+    analytics = {} as Analytics;
+  }
+} catch (error) {
+  console.error('Error initializing Firebase:', error);
+  // Create dummy instances in case of initialization error
+  app = {} as FirebaseApp;
+  auth = {} as Auth;
+  db = {} as Firestore;
+  storage = {} as FirebaseStorage;
+  analytics = {} as Analytics;
+}
 
 // Export as a single object to ensure type safety
 export const firebase = {
