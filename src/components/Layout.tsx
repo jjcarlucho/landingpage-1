@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { ModalProvider, useModal } from '../context/ModalContext';
+import { useModal } from '../context/ModalContext';
 import RegistrationModal from './RegistrationModal';
 import Toaster from './Toaster';
 
@@ -7,7 +7,7 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-function LayoutContent({ children }: LayoutProps) {
+export default function Layout({ children }: LayoutProps) {
   const { isRegistrationModalOpen, closeRegistrationModal } = useModal();
 
   return (
@@ -21,13 +21,5 @@ function LayoutContent({ children }: LayoutProps) {
       />
       <Toaster />
     </>
-  );
-}
-
-export default function Layout({ children }: LayoutProps) {
-  return (
-    <ModalProvider>
-      <LayoutContent>{children}</LayoutContent>
-    </ModalProvider>
   );
 } 
