@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Sparkles, Star, Shield, Clock } from 'lucide-react';
+import RegisterCTA from './RegisterCTA';
 
 const FinalCTA: React.FC = () => {
   const [showConfetti, setShowConfetti] = useState(false);
@@ -164,8 +165,7 @@ const FinalCTA: React.FC = () => {
                   onHoverEnd={() => setShowConfetti(false)}
                   className="inline-block"
                 >
-                  <a
-                    href="#register"
+                  <RegisterCTA
                     className="group relative inline-flex items-center justify-center px-8 md:px-12 py-4 md:py-6 text-xl md:text-2xl font-bold text-black bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 rounded-full overflow-hidden shadow-[0_0_30px_rgba(236,201,75,0.2)] md:shadow-[0_0_50px_rgba(236,201,75,0.3)] hover:shadow-[0_0_60px_rgba(236,201,75,0.3)] md:hover:shadow-[0_0_100px_rgba(236,201,75,0.5)] transition-all duration-300"
                   >
                     <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
@@ -173,7 +173,7 @@ const FinalCTA: React.FC = () => {
                       Get Free Access Now!
                       <ArrowRight className="ml-2 w-5 md:w-6 h-5 md:h-6 transform group-hover:translate-x-1 transition-transform duration-300" />
                     </span>
-                  </a>
+                  </RegisterCTA>
                 </motion.div>
               </div>
             </div>

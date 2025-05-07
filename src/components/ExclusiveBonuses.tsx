@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import RegisterCTA from './RegisterCTA';
 
 const ExclusiveBonuses = () => {
   const bonuses = [
@@ -57,9 +58,9 @@ const ExclusiveBonuses = () => {
             </div>
 
             <div className="mt-8">
-              <button className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-black font-bold rounded-lg py-4 px-4 hover:from-yellow-400 hover:to-yellow-500 transform hover:scale-105 transition-all duration-300 shadow-lg">
+              <RegisterCTA className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-black font-bold rounded-lg py-4 px-4 hover:from-yellow-400 hover:to-yellow-500 transform hover:scale-105 transition-all duration-300 shadow-lg">
                 GET FREE BONUSES NOW!
-              </button>
+              </RegisterCTA>
               <p className="text-sm text-gray-400 mt-4">🔥 Limited time offer</p>
             </div>
           </div>

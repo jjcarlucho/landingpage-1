@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sparkles } from 'lucide-react';
+import RegisterCTA from './RegisterCTA';
 
 const StickyCTA = () => {
   return (
@@ -12,9 +13,9 @@ const StickyCTA = () => {
           </div>
           <p className="text-lg font-semibold">Premium Edition COMPLETELY FREE + $1,294 in Bonuses</p>
         </div>
-        <button className="bg-black text-white font-bold py-3 px-8 rounded-lg hover:bg-gray-800 transition duration-300 transform hover:scale-105 shadow-lg border-2 border-black hover:border-yellow-400">
+        <RegisterCTA className="bg-black text-white font-bold py-3 px-8 rounded-lg hover:bg-gray-800 transition duration-300 transform hover:scale-105 shadow-lg border-2 border-black hover:border-yellow-400">
           GET FREE ACCESS NOW!
-        </button>
+        </RegisterCTA>
       </div>
     </div>
   );
