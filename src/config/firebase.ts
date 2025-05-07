@@ -23,12 +23,20 @@ let analytics: Analytics;
 try {
   // Initialize Firebase only in browser environment
   if (typeof window !== 'undefined') {
+    // Initialize Firebase
     app = initializeApp(firebaseConfig);
+    
+    // Initialize Auth
     auth = getAuth(app);
+    auth.useDeviceLanguage();
+    
+    // Initialize Firestore
     db = getFirestore(app);
+    
+    // Initialize Storage
     storage = getStorage(app);
     
-    // Initialize analytics only in production
+    // Initialize Analytics only in production
     if (process.env.NODE_ENV === 'production') {
       analytics = getAnalytics(app);
     }
@@ -44,6 +52,9 @@ try {
           }
         });
     }
+
+    // Log successful initialization
+    console.log('Firebase initialized successfully');
   } else {
     // Create dummy instances for server-side rendering
     app = {} as FirebaseApp;
