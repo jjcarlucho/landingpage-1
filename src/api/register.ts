@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-interface RegisterData {
+export interface RegisterData {
   name: string;
   email: string;
   phone: string;
