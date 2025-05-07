@@ -1,16 +1,23 @@
 import axios from 'axios';
 
 interface RegisterData {
+  name: string;
   email: string;
-  password: string;
-  fullName: string;
   phone: string;
-  consent: boolean;
 }
 
 export const registerUser = async (data: RegisterData) => {
   try {
     const response = await axios.post('/api/register', data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const sendWelcomeEmail = async (email: string) => {
+  try {
+    const response = await axios.post('/api/send-welcome-email', { email });
     return response.data;
   } catch (error) {
     throw error;
