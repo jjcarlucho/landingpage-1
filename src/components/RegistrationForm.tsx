@@ -5,11 +5,11 @@ import { useRegistration } from '../hooks/useRegistration';
 import { useModal } from '../context/ModalContext';
 
 const registrationSchema = z.object({
-  fullName: z.string().min(2, 'El nombre debe tener al menos 2 caracteres'),
-  email: z.string().email('Correo electrónico inválido'),
-  phone: z.string().min(10, 'Número de teléfono inválido'),
+  fullName: z.string().min(2, 'Name must be at least 2 characters'),
+  email: z.string().email('Invalid email address'),
+  phone: z.string().min(10, 'Invalid phone number'),
   consent: z.boolean().refine((val) => val === true, {
-    message: 'Debes aceptar los términos y condiciones',
+    message: 'You must accept the terms and conditions',
   }),
 });
 
@@ -40,7 +40,7 @@ export default function RegistrationForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div>
         <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
-          Nombre completo
+          Full Name
         </label>
         <input
           type="text"
@@ -55,7 +55,7 @@ export default function RegistrationForm() {
 
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-          Correo electrónico
+          Email Address
         </label>
         <input
           type="email"
@@ -70,7 +70,7 @@ export default function RegistrationForm() {
 
       <div>
         <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-          Número de teléfono
+          Phone Number
         </label>
         <input
           type="tel"
@@ -91,7 +91,7 @@ export default function RegistrationForm() {
           className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
         />
         <label htmlFor="consent" className="ml-2 block text-sm text-gray-900">
-          Acepto recibir información sobre los libros y actualizaciones
+          I agree to receive information about books and updates
         </label>
       </div>
       {errors.consent && (
@@ -103,7 +103,7 @@ export default function RegistrationForm() {
         disabled={isLoading}
         className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
       >
-        {isLoading ? 'Registrando...' : 'Registrarse'}
+        {isLoading ? 'Registering...' : 'Register Now'}
       </button>
     </form>
   );

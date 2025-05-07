@@ -41,11 +41,11 @@ export function useRegistration() {
       // Send welcome email with credentials
       await sendWelcomeEmail(data.email, data.fullName, tempPassword);
 
-      toast.success('¡Registro exitoso! Revisa tu correo para más información.');
+      toast.success('Registration successful! Check your email for more information.');
       return true;
     } catch (error) {
       console.error('Error during registration:', error);
-      toast.error('Error al registrar. Por favor, intenta nuevamente.');
+      toast.error('Registration failed. Please try again.');
       return false;
     } finally {
       setIsLoading(false);

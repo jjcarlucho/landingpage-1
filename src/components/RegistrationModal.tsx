@@ -42,14 +42,14 @@ export default function RegistrationModal({ isOpen, onClose }: RegistrationModal
                     className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     onClick={onClose}
                   >
-                    <span className="sr-only">Cerrar</span>
+                    <span className="sr-only">Close</span>
                     <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
                 <div className="sm:flex sm:items-start">
                   <div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
                     <Dialog.Title as="h3" className="text-2xl font-semibold leading-6 text-gray-900 mb-6">
-                      Obtén acceso a los libros gratuitos
+                      Get Free Access to Books
                     </Dialog.Title>
                     <div className="mt-4">
                       <RegistrationForm />
