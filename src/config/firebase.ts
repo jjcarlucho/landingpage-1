@@ -1,8 +1,8 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
-import { getAnalytics } from 'firebase/analytics';
+import { initializeApp, FirebaseApp } from 'firebase/app';
+import { getAuth, Auth } from 'firebase/auth';
+import { getFirestore, Firestore } from 'firebase/firestore';
+import { getStorage, FirebaseStorage } from 'firebase/storage';
+import { getAnalytics, Analytics } from 'firebase/analytics';
 
 const firebaseConfig = {
   apiKey: "AIzaSyC3yV5JBivrdGP1CeYsfkmd_QKbS0Rtk4Q",
@@ -14,19 +14,12 @@ const firebaseConfig = {
   measurementId: "G-BCN8EPL57B"
 };
 
-let app;
-let auth;
-let db;
-let storage;
-let analytics;
-
-if (typeof window !== 'undefined') {
-  app = initializeApp(firebaseConfig);
-  auth = getAuth(app);
-  db = getFirestore(app);
-  storage = getStorage(app);
-  analytics = getAnalytics(app);
-}
+// Initialize Firebase only in browser environment
+const app = typeof window !== 'undefined' ? initializeApp(firebaseConfig) : null as unknown as FirebaseApp;
+const auth = typeof window !== 'undefined' ? getAuth(app) : null as unknown as Auth;
+const db = typeof window !== 'undefined' ? getFirestore(app) : null as unknown as Firestore;
+const storage = typeof window !== 'undefined' ? getStorage(app) : null as unknown as FirebaseStorage;
+const analytics = typeof window !== 'undefined' ? getAnalytics(app) : null as unknown as Analytics;
 
 export { auth, db, storage, analytics };
 export default app; 
