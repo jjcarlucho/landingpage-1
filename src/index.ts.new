@@ -1,0 +1,62 @@
+import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
+import * as nodemailer from 'nodemailer';
+import * as mailjetTransport from 'nodemailer-mailjet-transport';
+import { Request, Response } from 'express';
+
+admin.initializeApp();
+
+// Configura el transporter de Nodemailer con Mailjet
+const transporter = nodemailer.createTransport(
+  mailjetTransport({
+    auth: {
+      apiKey: functions.config().mailjet.apikey,
+      apiSecret: functions.config().mailjet.secret,
+    },
+  })
+);
+
+export const sendTestEmail = functions.https.onRequest(async (req: Request, res: Response) => {
+  const mailOptions = {
+    from: 'noreply@thegamechangerbooks.com',
+    to: 'carluchojonthan2@gmail.com',
+    subject: 'Test Email from Firebase Functions',
+    text: 'This is a test email sent from Firebase Functions using Mailjet.',
+    html: `
+      <h1>Test Email</h1>
+      <p>This is a test email sent from Firebase Functions using Mailjet.</p>
+      <p>If you are receiving this, the email configuration is working correctly!</p>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).send('Test email sent successfully!');
+  } catch (error) {
+    console.error('Error sending test email:', error);
+    res.status(500).send('Error sending test email');
+  }
+});
+
+export const sendWelcomeEmail = functions.firestore
+  .document('users/{userId}')
+  .onCreate(async (snap: admin.firestore.QueryDocumentSnapshot, context: functions.EventContext) => {
+    const userData = snap.data();
+    const { email, fullName, tempPassword } = userData;
+
+    const mailOptions = {
+      from: 'noreply@thegamechangerbooks.com',
+      to: email,
+      subject: 'Welcome to Your App!',
+      text: `Hi ${fullName},\n\nWelcome! Your temporary password is: ${tempPassword}`,
+      html: `<p>Hi ${fullName},</p><p>Welcome! Your temporary password is: <b>${tempPassword}</b></p>`,
+    };
+
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log('Welcome email sent successfully to:', email);
+    } catch (error) {
+      console.error('Error sending welcome email:', error);
+      throw new functions.https.HttpsError('internal', 'Error sending welcome email');
+    }
+  }); 
